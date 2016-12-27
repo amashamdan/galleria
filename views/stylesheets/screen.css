@@ -1,0 +1,91 @@
+/* line 4, ../sass/screen.scss */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* line 10, ../sass/screen.scss */
+body {
+  background-image: url("wall.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+/* line 23, ../sass/screen.scss */
+.menu-bar {
+  color: #404040;
+  padding: 10px;
+  margin: 0 0 30px 0;
+  background-color: white;
+  opacity: 0.9;
+}
+/* line 29, ../sass/screen.scss */
+.menu-bar h3 {
+  margin: 0;
+}
+
+/* line 34, ../sass/screen.scss */
+.sizer {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 900px;
+}
+
+/* line 40, ../sass/screen.scss */
+#login-button {
+  width: 120px;
+  font-family: 'Open Sans', sans-serif;
+  border-radius: 0;
+  font-size: 0.8em;
+}
+
+/* line 47, ../sass/screen.scss */
+.space-between-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* line 53, ../sass/screen.scss */
+.content {
+  background-color: white;
+  opacity: 0.9;
+  padding: 10px;
+}
+
+/* line 59, ../sass/screen.scss */
+.gallerite {
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid gray;
+  width: 200px;
+}
+/* line 64, ../sass/screen.scss */
+.gallerite img {
+  width: 100%;
+}
+
+/* line 69, ../sass/screen.scss */
+.footer {
+  font-size: 0.8em;
+  color: #404040;
+  margin-top: 30px;
+  background-color: white;
+  opacity: 0.9;
+  padding: 5px;
+}
+/* line 76, ../sass/screen.scss */
+.footer ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+/* line 82, ../sass/screen.scss */
+.footer a {
+  color: #404040;
+}

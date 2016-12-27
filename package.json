@@ -1,0 +1,26 @@
+{
+  "name": "imagaria",
+  "version": "1.0.0",
+  "description": "Under construction",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amashamdan/imagaria.git"
+  },
+  "author": "Amer Hamdan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amashamdan/imagaria/issues"
+  },
+  "homepage": "https://github.com/amashamdan/imagaria#readme",
+  "dependencies": {
+    "ejs": "^2.5.5",
+    "express": "^4.14.0",
+    "express-force-https": "^1.0.0",
+    "mongodb": "^2.2.16"
+  }
+}

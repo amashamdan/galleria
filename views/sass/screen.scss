@@ -1,0 +1,85 @@
+$section-bk-color: white;
+$section-font-color: #404040;
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background-image: url("wall.jpg");
+	background-size: cover;
+	background-attachment: fixed;
+	margin: 0;
+	padding: 0;
+	font-family: 'Open Sans', sans-serif;
+}
+
+@mixin button {
+	width: 120px;
+}
+
+.menu-bar {
+	color: $section-font-color;
+	padding: 10px;
+	margin: 0 0 30px 0;
+	background-color: $section-bk-color;
+	opacity: 0.9;
+	h3 {
+		margin: 0;
+	}
+}
+
+.sizer {
+	margin: 0 auto;
+	width: 100%;
+	max-width: 900px;
+}
+
+#login-button {
+	@include button;
+	font-family: 'Open Sans', sans-serif;
+	border-radius: 0;
+	font-size: 0.8em;
+}
+
+.space-between-wrapper {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.content {
+	background-color: $section-bk-color;
+	opacity: 0.9;
+	padding: 10px;
+}
+
+.gallerite {
+	margin: 5px;
+	padding: 5px;
+	border: 1px solid gray;
+	width: 200px;
+	img {
+		width: 100%;
+	}
+}
+
+.footer {
+	font-size: 0.8em;
+	color: $section-font-color;
+	margin-top: 30px;
+	background-color: $section-bk-color;
+	opacity: 0.9;
+	padding: 5px; 
+	ul {
+		list-style: none;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-around;
+	}
+	a {
+		color: $section-font-color;
+	}
+}
