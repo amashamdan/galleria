@@ -1,11 +1,12 @@
 $section-bk-color: white;
 $section-font-color: #404040;
 $generic-button-font-color: white;
-$button-width: 100px;
+$button-width: 90px;
 $generic-button-bk-color: #373F51;
 $danger-button-bk-color: #F05D5E;
 $ok-button-bk-color: #0F7173;
-
+$type-header-bk-color: gray;
+$type-header-font-color: white;
 
 * {
 	margin: 0;
@@ -24,7 +25,7 @@ body {
 
 @mixin button($type) {
 	width: $button-width;
-	padding: 10px 5px 10px 5px;
+	padding: 7px;
 	border: none;
 	font-size: 0.7em;
 	color: $generic-button-font-color;
@@ -32,13 +33,15 @@ body {
 		background-color: $danger-button-bk-color;
 	} @elseif $type == generic {
 		background-color: $generic-button-bk-color;
+	} @elseif $type == ok {
+		background-color: $ok-button-bk-color;
 	}
 	&:hover {
 		cursor: pointer;
 	}
 }
 
-$buttons: generic danger;
+$buttons: generic danger ok;
 
 @each $button in $buttons {
 	.#{$button}-button {
@@ -90,6 +93,36 @@ $buttons: generic danger;
 	img {
 		width: 100%;
 	}
+}
+
+.type-header {
+	margin: 10px 0 10px 0;
+	background-color: $type-header-bk-color;
+	padding: 5px;
+	color: $type-header-font-color;
+	&:hover {
+		cursor: pointer;
+	}
+}
+
+input {
+	width: 220px;
+	margin: 10px 0 10px 0;
+	padding: 5px;
+}
+
+hr {
+	margin: 10px 0 10px 0;
+}
+
+.new-gallerite-form {
+	display: none;
+}
+
+.error-message {
+	background-color: $danger-button-bk-color;
+	color: white;
+	padding: 3px;
 }
 
 .footer {

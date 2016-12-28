@@ -1,11 +1,11 @@
-/* line 10, ../sass/screen.scss */
+/* line 11, ../sass/screen.scss */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* line 16, ../sass/screen.scss */
+/* line 17, ../sass/screen.scss */
 body {
   background-image: url("wall.jpg");
   background-size: cover;
@@ -15,35 +15,49 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
-/* line 44, ../sass/screen.scss */
+/* line 47, ../sass/screen.scss */
 .generic-button {
-  width: 100px;
-  padding: 10px 5px 10px 5px;
+  width: 90px;
+  padding: 7px;
   border: none;
   font-size: 0.7em;
   color: white;
   background-color: #373F51;
 }
-/* line 36, ../sass/screen.scss */
+/* line 39, ../sass/screen.scss */
 .generic-button:hover {
   cursor: pointer;
 }
 
-/* line 44, ../sass/screen.scss */
+/* line 47, ../sass/screen.scss */
 .danger-button {
-  width: 100px;
-  padding: 10px 5px 10px 5px;
+  width: 90px;
+  padding: 7px;
   border: none;
   font-size: 0.7em;
   color: white;
   background-color: #F05D5E;
 }
-/* line 36, ../sass/screen.scss */
+/* line 39, ../sass/screen.scss */
 .danger-button:hover {
   cursor: pointer;
 }
 
-/* line 49, ../sass/screen.scss */
+/* line 47, ../sass/screen.scss */
+.ok-button {
+  width: 90px;
+  padding: 7px;
+  border: none;
+  font-size: 0.7em;
+  color: white;
+  background-color: #0F7173;
+}
+/* line 39, ../sass/screen.scss */
+.ok-button:hover {
+  cursor: pointer;
+}
+
+/* line 52, ../sass/screen.scss */
 .menu-bar {
   color: #404040;
   padding: 10px;
@@ -51,53 +65,89 @@ body {
   background-color: white;
   opacity: 0.9;
 }
-/* line 55, ../sass/screen.scss */
+/* line 58, ../sass/screen.scss */
 .menu-bar h3 {
   margin: 0;
 }
 
-/* line 60, ../sass/screen.scss */
+/* line 63, ../sass/screen.scss */
 .sizer {
   margin: 0 auto;
   width: 100%;
   max-width: 900px;
 }
 
-/* line 66, ../sass/screen.scss */
+/* line 69, ../sass/screen.scss */
 #login-button {
-  width: 100px;
+  width: 90px;
   font-family: 'Open Sans', sans-serif;
   border-radius: 0;
   font-size: 0.8em;
 }
 
-/* line 73, ../sass/screen.scss */
+/* line 76, ../sass/screen.scss */
 .space-between-wrapper {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
-/* line 79, ../sass/screen.scss */
+/* line 82, ../sass/screen.scss */
 .content {
   background-color: white;
   opacity: 0.9;
   padding: 10px;
 }
 
-/* line 85, ../sass/screen.scss */
+/* line 88, ../sass/screen.scss */
 .gallerite {
   margin: 5px;
   padding: 5px;
   border: 1px solid gray;
   width: 200px;
 }
-/* line 90, ../sass/screen.scss */
+/* line 93, ../sass/screen.scss */
 .gallerite img {
   width: 100%;
 }
 
-/* line 95, ../sass/screen.scss */
+/* line 98, ../sass/screen.scss */
+.type-header {
+  margin: 10px 0 10px 0;
+  background-color: gray;
+  padding: 5px;
+  color: white;
+}
+/* line 103, ../sass/screen.scss */
+.type-header:hover {
+  cursor: pointer;
+}
+
+/* line 108, ../sass/screen.scss */
+input {
+  width: 220px;
+  margin: 10px 0 10px 0;
+  padding: 5px;
+}
+
+/* line 114, ../sass/screen.scss */
+hr {
+  margin: 10px 0 10px 0;
+}
+
+/* line 118, ../sass/screen.scss */
+.new-gallerite-form {
+  display: none;
+}
+
+/* line 122, ../sass/screen.scss */
+.error-message {
+  background-color: #F05D5E;
+  color: white;
+  padding: 3px;
+}
+
+/* line 128, ../sass/screen.scss */
 .footer {
   font-size: 0.8em;
   color: #404040;
@@ -106,14 +156,14 @@ body {
   opacity: 0.9;
   padding: 5px;
 }
-/* line 102, ../sass/screen.scss */
+/* line 135, ../sass/screen.scss */
 .footer ul {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
-/* line 108, ../sass/screen.scss */
+/* line 141, ../sass/screen.scss */
 .footer a {
   color: #404040;
 }
