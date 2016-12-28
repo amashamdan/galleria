@@ -13,7 +13,7 @@ MongoClient.connect(mongoUrl, function(err, db) {
 		router.route("/")
 		.get(function(req, res) {
 			gallerites.find({}).toArray(function(err, results) {
-				res.render("index.ejs", {user: undefined, gallerites: results});
+				res.render("index.ejs", {user: req.user, gallerites: results});
 			});
 		});
 	}
