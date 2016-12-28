@@ -33,6 +33,9 @@ body {
 	} @elseif $type == generic {
 		background-color: $generic-button-bk-color;
 	}
+	&:hover {
+		cursor: pointer;
+	}
 }
 
 $buttons: generic danger;

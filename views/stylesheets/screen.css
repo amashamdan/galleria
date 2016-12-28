@@ -15,7 +15,7 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
-/* line 41, ../sass/screen.scss */
+/* line 44, ../sass/screen.scss */
 .generic-button {
   width: 100px;
   padding: 10px 5px 10px 5px;
@@ -24,8 +24,12 @@ body {
   color: white;
   background-color: #373F51;
 }
+/* line 36, ../sass/screen.scss */
+.generic-button:hover {
+  cursor: pointer;
+}
 
-/* line 41, ../sass/screen.scss */
+/* line 44, ../sass/screen.scss */
 .danger-button {
   width: 100px;
   padding: 10px 5px 10px 5px;
@@ -34,8 +38,12 @@ body {
   color: white;
   background-color: #F05D5E;
 }
+/* line 36, ../sass/screen.scss */
+.danger-button:hover {
+  cursor: pointer;
+}
 
-/* line 46, ../sass/screen.scss */
+/* line 49, ../sass/screen.scss */
 .menu-bar {
   color: #404040;
   padding: 10px;
@@ -43,19 +51,19 @@ body {
   background-color: white;
   opacity: 0.9;
 }
-/* line 52, ../sass/screen.scss */
+/* line 55, ../sass/screen.scss */
 .menu-bar h3 {
   margin: 0;
 }
 
-/* line 57, ../sass/screen.scss */
+/* line 60, ../sass/screen.scss */
 .sizer {
   margin: 0 auto;
   width: 100%;
   max-width: 900px;
 }
 
-/* line 63, ../sass/screen.scss */
+/* line 66, ../sass/screen.scss */
 #login-button {
   width: 100px;
   font-family: 'Open Sans', sans-serif;
@@ -63,33 +71,33 @@ body {
   font-size: 0.8em;
 }
 
-/* line 70, ../sass/screen.scss */
+/* line 73, ../sass/screen.scss */
 .space-between-wrapper {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
-/* line 76, ../sass/screen.scss */
+/* line 79, ../sass/screen.scss */
 .content {
   background-color: white;
   opacity: 0.9;
   padding: 10px;
 }
 
-/* line 82, ../sass/screen.scss */
+/* line 85, ../sass/screen.scss */
 .gallerite {
   margin: 5px;
   padding: 5px;
   border: 1px solid gray;
   width: 200px;
 }
-/* line 87, ../sass/screen.scss */
+/* line 90, ../sass/screen.scss */
 .gallerite img {
   width: 100%;
 }
 
-/* line 92, ../sass/screen.scss */
+/* line 95, ../sass/screen.scss */
 .footer {
   font-size: 0.8em;
   color: #404040;
@@ -98,14 +106,14 @@ body {
   opacity: 0.9;
   padding: 5px;
 }
-/* line 99, ../sass/screen.scss */
+/* line 102, ../sass/screen.scss */
 .footer ul {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
-/* line 105, ../sass/screen.scss */
+/* line 108, ../sass/screen.scss */
 .footer a {
   color: #404040;
 }
