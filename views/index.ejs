@@ -18,8 +18,8 @@
 				<% if (!user) { %>
 				<a href="/login" id="login-button" class="zocial twitter">Login</a>
 				<% } else { %>
-				<button class="generic-button">Add gallerite</button>
-				<button class="generic-button">My gallerites</button>
+				<a href="/addGallerite"><button class="generic-button">Add gallerite</button></a>
+				<a href="myGallerites"><button class="generic-button">My gallerites</button></a>
 				<a href="/login/logout"><button class="danger-button">Logout</button></a>
 				<% } %>
 				</div>
