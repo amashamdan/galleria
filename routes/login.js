@@ -12,4 +12,10 @@ router.route("/return")
     res.redirect("/");
   });
 
+router.route("/logout")
+.get(function(req, res) {
+	req.logout();
+	res.redirect("/");
+});
+
 module.exports = router;
