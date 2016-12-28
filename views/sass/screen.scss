@@ -1,5 +1,11 @@
 $section-bk-color: white;
 $section-font-color: #404040;
+$generic-button-font-color: white;
+$button-width: 100px;
+$generic-button-bk-color: #373F51;
+$danger-button-bk-color: #F05D5E;
+$ok-button-bk-color: #0F7173;
+
 
 * {
 	margin: 0;
@@ -16,8 +22,25 @@ body {
 	font-family: 'Open Sans', sans-serif;
 }
 
-@mixin button {
-	width: 120px;
+@mixin button($type) {
+	width: $button-width;
+	padding: 10px 5px 10px 5px;
+	border: none;
+	font-size: 0.7em;
+	color: $generic-button-font-color;
+	@if $type == danger {
+		background-color: $danger-button-bk-color;
+	} @elseif $type == generic {
+		background-color: $generic-button-bk-color;
+	}
+}
+
+$buttons: generic danger;
+
+@each $button in $buttons {
+	.#{$button}-button {
+		@include button($button); 
+	}
 }
 
 .menu-bar {
@@ -38,7 +61,7 @@ body {
 }
 
 #login-button {
-	@include button;
+	width: $button-width;
 	font-family: 'Open Sans', sans-serif;
 	border-radius: 0;
 	font-size: 0.8em;
