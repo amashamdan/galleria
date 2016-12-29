@@ -36,10 +36,17 @@ router.route("/")
 
 				gallerites.count(function(err, count) {
 					var serialNumber = count + 1;
+
+					if (req.body.type == "youtube") {
+						var link = req.body.link.replace("watch?v=", "embed/");
+					} else {
+						var link = req.body.link;
+					}
+
 					gallerites.insert({
 						"serialNumber": serialNumber,
 						"type": req.body.type,
-						"url": req.body.link,
+						"url": link,
 						"addedBy": {"userId": req.user.id, "name": req.user._json.name, "imageLink": req.user._json.profile_image_url_https},
 						"description": req.body.description,
 						"likedBy": []
