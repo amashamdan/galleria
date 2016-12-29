@@ -35,7 +35,11 @@
 		<% } else { %>
 		<% for (var gallerite in gallerites) { %>
 		<div class="gallerite">
+			<% if (gallerites[gallerite].type == "image") { %>
 			<img src=<%= gallerites[gallerite].url %>>
+			<% } else if (gallerites[gallerite].type == "youtube") { %>
+			<iframe width="560" height="315" src=<%= gallerites[gallerite].url %> frameborder="0" allowfullscreen></iframe>
+			<% } %>
 			<p><%= gallerites[gallerite].description %></p>
 			<p><%= gallerites[gallerite].addedBy.name %></p>
 			<img src=<%= gallerites[gallerite].addedBy.imageLink %>>
