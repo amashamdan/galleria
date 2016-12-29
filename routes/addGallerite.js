@@ -28,23 +28,64 @@ router.route("/")
 					res.end("Error contacting database");
 					return
 				}
+
 				var gallerites = db.collection("gallerites");
-				gallerites.insert({
-					"type": req.body.type,
-					"url": req.body.link,
-					"addedBy": req.user._json.name,
-					"addedById": req.user.id,
-					"addedByImage": req.user._json.profile_image_url_https,
-					"description": req.body.description,
-					"likes": 0,
-					"likedBy": []
-				}, function() {
-					res.redirect("/");
+				var users = db.collection("users");
+				var galleritesUpdated = false;
+				var usersUpdated = false;
+
+				gallerites.count(function(err, count) {
+					var serialNumber = count + 1;
+					gallerites.insert({
+						"serialNumber": serialNumber,
+						"type": req.body.type,
+						"url": req.body.link,
+						"addedBy": {"userId": req.user.id, "name": req.user._json.name, "imageLink": req.user._json.profile_image_url_https},
+						"description": req.body.description,
+						"likedBy": []
+					}, function() {
+						galleritesUpdated = true;
+						responseReady(res, galleritesUpdated, usersUpdated);
+					});
+
+					users.find({"userId": req.user.id}).toArray(function(err, result) {
+						if (result.length == 0) {
+							users.insert({
+								"userId": req.user.id,
+								"name": req.user._json.name,
+								"imageLink": req.user._json.profile_image_url_https,
+								"addedGallerites": [serialNumber],
+								"likedGallerites": []
+							}, function() {
+								usersUpdated = true;
+								responseReady(res, galleritesUpdated, usersUpdated);
+							});
+						} else {
+							users.update(
+								{"userId": req.user.id},
+								{"$push": {"addedGallerites": serialNumber}},
+								function() {
+									usersUpdated = true;
+									responseReady(res, galleritesUpdated, usersUpdated);
+								}
+							);
+						}
+					});
+					
 				});
 			});
 			
 		}
 	});
 })
+
+function responseReady(res, galleritesUpdated, usersUpdated) {
+	if (galleritesUpdated && usersUpdated) {
+		res.redirect("/");
+		return;
+	} else {
+		return;
+	}
+}
 
 module.exports = router;
