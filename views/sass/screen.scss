@@ -95,6 +95,10 @@ $buttons: generic danger ok;
 	}
 }
 
+.description {
+	text-align: center;
+}
+
 .type-header {
 	margin: 10px 0 10px 0;
 	background-color: $type-header-bk-color;
@@ -111,8 +115,12 @@ input {
 	padding: 5px;
 }
 
-hr {
+.main-hr {
 	margin: 10px 0 10px 0;
+}
+
+.minor-hr {
+	margin: 5px 0 5px 0;
 }
 
 .new-gallerite-form {
@@ -123,6 +131,50 @@ hr {
 	background-color: $danger-button-bk-color;
 	color: white;
 	padding: 3px;
+}
+
+.adder {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	font-size: 0.8em;
+	color: $section-font-color;
+	img {
+		width: 40px;
+		height: 40px;
+		margin-right: 5px;	
+	}
+}
+
+.likes-section {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.like-button, .explore-button {
+	color: white;
+	border: none;
+	border-radius: 3px;
+	padding: 5px;
+	&:hover {
+		cursor: pointer;
+	}
+}
+
+.like-button {
+	background-color: $ok-button-bk-color;
+}
+
+.explore-button {
+	background-color: $generic-button-bk-color;
+}
+
+// From http://weloveiconfonts.com/
+[class*="fontawesome-"]:before {
+	font-family: 'FontAwesome', sans-serif;
+	margin-right: 5px;
 }
 
 .footer {

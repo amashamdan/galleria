@@ -112,42 +112,103 @@ body {
 }
 
 /* line 98, ../sass/screen.scss */
+.description {
+  text-align: center;
+}
+
+/* line 102, ../sass/screen.scss */
 .type-header {
   margin: 10px 0 10px 0;
   background-color: gray;
   padding: 5px;
   color: white;
 }
-/* line 103, ../sass/screen.scss */
+/* line 107, ../sass/screen.scss */
 .type-header:hover {
   cursor: pointer;
 }
 
-/* line 108, ../sass/screen.scss */
+/* line 112, ../sass/screen.scss */
 input {
   width: 220px;
   margin: 10px 0 10px 0;
   padding: 5px;
 }
 
-/* line 114, ../sass/screen.scss */
-hr {
+/* line 118, ../sass/screen.scss */
+.main-hr {
   margin: 10px 0 10px 0;
 }
 
-/* line 118, ../sass/screen.scss */
+/* line 122, ../sass/screen.scss */
+.minor-hr {
+  margin: 5px 0 5px 0;
+}
+
+/* line 126, ../sass/screen.scss */
 .new-gallerite-form {
   display: none;
 }
 
-/* line 122, ../sass/screen.scss */
+/* line 130, ../sass/screen.scss */
 .error-message {
   background-color: #F05D5E;
   color: white;
   padding: 3px;
 }
 
-/* line 128, ../sass/screen.scss */
+/* line 136, ../sass/screen.scss */
+.adder {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: 0.8em;
+  color: #404040;
+}
+/* line 142, ../sass/screen.scss */
+.adder img {
+  width: 40px;
+  height: 40px;
+  margin-right: 5px;
+}
+
+/* line 149, ../sass/screen.scss */
+.likes-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* line 156, ../sass/screen.scss */
+.like-button, .explore-button {
+  color: white;
+  border: none;
+  border-radius: 3px;
+  padding: 5px;
+}
+/* line 161, ../sass/screen.scss */
+.like-button:hover, .explore-button:hover {
+  cursor: pointer;
+}
+
+/* line 166, ../sass/screen.scss */
+.like-button {
+  background-color: #0F7173;
+}
+
+/* line 170, ../sass/screen.scss */
+.explore-button {
+  background-color: #373F51;
+}
+
+/* line 175, ../sass/screen.scss */
+[class*="fontawesome-"]:before {
+  font-family: 'FontAwesome', sans-serif;
+  margin-right: 5px;
+}
+
+/* line 180, ../sass/screen.scss */
 .footer {
   font-size: 0.8em;
   color: #404040;
@@ -156,14 +217,14 @@ hr {
   opacity: 0.9;
   padding: 5px;
 }
-/* line 135, ../sass/screen.scss */
+/* line 187, ../sass/screen.scss */
 .footer ul {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
-/* line 141, ../sass/screen.scss */
+/* line 193, ../sass/screen.scss */
 .footer a {
   color: #404040;
 }
