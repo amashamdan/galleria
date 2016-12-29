@@ -7,6 +7,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/css-social-buttons/1.2.0/css/zocial.min.css" rel="stylesheet">
+	<link href="http://weloveiconfonts.com/api/?family=fontawesome" rel="stylesheet">
 	<script src="scripts/index.js"></script>
 </head>
 <body>
@@ -28,7 +29,7 @@
 	</div>
 
 	<div class="content sizer">
-		<p>Added gallerites</p><hr>
+		<p>Added gallerites</p><hr class="main-hr">
 		<% if (gallerites.length == 0) { %>
 		<p>We're still new and small :(</p>
 		<p>Nobody added any gallerites... Please be the first to add one.</p>
@@ -38,12 +39,22 @@
 			<% if (gallerites[gallerite].type == "image") { %>
 			<img src=<%= gallerites[gallerite].url %>>
 			<% } else if (gallerites[gallerite].type == "youtube") { %>
-			<iframe width="560" height="315" src=<%= gallerites[gallerite].url %> frameborder="0" allowfullscreen></iframe>
+			<iframe width="190" src=<%= gallerites[gallerite].url %> frameborder="0" allowfullscreen></iframe>
 			<% } %>
-			<p><%= gallerites[gallerite].description %></p>
-			<p><%= gallerites[gallerite].addedBy.name %></p>
-			<img src=<%= gallerites[gallerite].addedBy.imageLink %>>
-			<p>Likes: <%= gallerites[gallerite].likedBy.length %></p>
+			<p class="description"><%= gallerites[gallerite].description %></p><hr class="minor-hr">
+			<p>Added by:</p>
+
+			<a class="adder" href="/user/<%= gallerites[gallerite].addedBy.userId %>">
+				<img src=<%= gallerites[gallerite].addedBy.imageLink %>>
+				<p><%= gallerites[gallerite].addedBy.name %></p>
+			</a><hr class="minor-hr">
+			<div class="likes-section">
+				<p>Likes: <%= gallerites[gallerite].likedBy.length %></p>
+				<% if (user) { %>
+				<a href="/like/<%- JSON.stringify(gallerites[gallerite].serialNumber) %>"><button class="like-button"><span class="fontawesome-thumbs-up"></span>Like</button></a>
+				<% } %>
+				<a href="/explore/<%- JSON.stringify(gallerites[gallerite].serialNumber) %>"><button class="explore-button">Explore</button></a>
+			</div>
 		</div>
 		<% } %>
 		<% } %>
