@@ -29,13 +29,19 @@
 
 	<div class="content sizer">
 		<p>Added gallerites</p><hr>
+		<% if (gallerites.length == 0) { %>
+		<p>We're still new and small :(</p>
+		<p>Nobody added any gallerites... Please be the first to add one.</p>
+		<% } else { %>
 		<% for (var gallerite in gallerites) { %>
 		<div class="gallerite">
 			<img src=<%= gallerites[gallerite].url %>>
 			<p><%= gallerites[gallerite].description %></p>
-			<p><%= gallerites[gallerite].addedBy %></p>
-			<p>Likes: <%= gallerites[gallerite].likes %></p>
+			<p><%= gallerites[gallerite].addedBy.name %></p>
+			<img src=<%= gallerites[gallerite].addedBy.imageLink %>>
+			<p>Likes: <%= gallerites[gallerite].likedBy.length %></p>
 		</div>
+		<% } %>
 		<% } %>
 	</div>
 
