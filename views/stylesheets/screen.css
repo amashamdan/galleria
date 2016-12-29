@@ -181,14 +181,14 @@ input {
 }
 
 /* line 156, ../sass/screen.scss */
-.like-button, .explore-button {
+.like-button, .explore-button, .unlike-button {
   color: white;
   border: none;
   border-radius: 3px;
   padding: 5px;
 }
 /* line 161, ../sass/screen.scss */
-.like-button:hover, .explore-button:hover {
+.like-button:hover, .explore-button:hover, .unlike-button:hover {
   cursor: pointer;
 }
 
@@ -199,21 +199,28 @@ input {
 
 /* line 170, ../sass/screen.scss */
 .explore-button {
+  margin-top: 5px;
   background-color: #373F51;
+  width: 100%;
 }
 
-/* line 175, ../sass/screen.scss */
+/* line 176, ../sass/screen.scss */
+.unlike-button {
+  background-color: #F05D5E;
+}
+
+/* line 181, ../sass/screen.scss */
 [class*="fontawesome-"]:before {
   font-family: 'FontAwesome', sans-serif;
   margin-right: 5px;
 }
 
-/* line 180, ../sass/screen.scss */
+/* line 186, ../sass/screen.scss */
 .article-icon {
   width: 100px !important;
 }
 
-/* line 184, ../sass/screen.scss */
+/* line 190, ../sass/screen.scss */
 .footer {
   font-size: 0.8em;
   color: #404040;
@@ -222,14 +229,14 @@ input {
   opacity: 0.9;
   padding: 5px;
 }
-/* line 191, ../sass/screen.scss */
+/* line 197, ../sass/screen.scss */
 .footer ul {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
-/* line 197, ../sass/screen.scss */
+/* line 203, ../sass/screen.scss */
 .footer a {
   color: #404040;
 }

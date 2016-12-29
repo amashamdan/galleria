@@ -153,7 +153,7 @@ input {
 	justify-content: space-between;
 }
 
-.like-button, .explore-button {
+.like-button, .explore-button, .unlike-button {
 	color: white;
 	border: none;
 	border-radius: 3px;
@@ -168,7 +168,13 @@ input {
 }
 
 .explore-button {
+	margin-top: 5px;
 	background-color: $generic-button-bk-color;
+	width: 100%;
+}
+
+.unlike-button {
+	background-color: $danger-button-bk-color;
 }
 
 // From http://weloveiconfonts.com/
