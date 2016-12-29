@@ -8,6 +8,8 @@
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/css-social-buttons/1.2.0/css/zocial.min.css" rel="stylesheet">
 	<link href="http://weloveiconfonts.com/api/?family=fontawesome" rel="stylesheet">
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 	<script src="scripts/index.js"></script>
 </head>
 <body>
@@ -51,12 +53,19 @@
 				<p><%= gallerites[gallerite].addedBy.name %></p>
 			</a><hr class="minor-hr">
 			<div class="likes-section">
-				<p>Likes: <%= gallerites[gallerite].likedBy.length %></p>
-				<% if (user) { %>
-				<a href="/like/<%- JSON.stringify(gallerites[gallerite].serialNumber) %>"><button class="like-button"><span class="fontawesome-thumbs-up"></span>Like</button></a>
+				<p>Likes: <span class="no-of-likes"><%= gallerites[gallerite].likedBy.length %></span></p>
+
+				<% if (user && gallerites[gallerite].likedBy.indexOf(user.id) == -1) { %>
+
+				<button class="action like-button" gallerite=<%- JSON.stringify(gallerites[gallerite].serialNumber) %>><span class="fontawesome-thumbs-up"></span>Like</button>
+
+				<% } else if (user && gallerites[gallerite].likedBy.indexOf(user.id) > -1) { %>
+
+				<button class="action unlike-button" gallerite=<%- JSON.stringify(gallerites[gallerite].serialNumber) %>><span class="fontawesome-thumbs-down"></span>Unlike</button>
+
 				<% } %>
-				<a href="/explore/<%- JSON.stringify(gallerites[gallerite].serialNumber) %>"><button class="explore-button">Explore</button></a>
 			</div>
+			<a href="/explore/<%- JSON.stringify(gallerites[gallerite].serialNumber) %>"><button class="explore-button">Explore</button></a>
 		</div>
 		<% } %>
 		<% } %>
