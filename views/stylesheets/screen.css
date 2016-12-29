@@ -209,6 +209,11 @@ input {
 }
 
 /* line 180, ../sass/screen.scss */
+.article-icon {
+  width: 100px !important;
+}
+
+/* line 184, ../sass/screen.scss */
 .footer {
   font-size: 0.8em;
   color: #404040;
@@ -217,14 +222,14 @@ input {
   opacity: 0.9;
   padding: 5px;
 }
-/* line 187, ../sass/screen.scss */
+/* line 191, ../sass/screen.scss */
 .footer ul {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
-/* line 193, ../sass/screen.scss */
+/* line 197, ../sass/screen.scss */
 .footer a {
   color: #404040;
 }

@@ -40,6 +40,8 @@
 			<img src=<%= gallerites[gallerite].url %>>
 			<% } else if (gallerites[gallerite].type == "youtube") { %>
 			<iframe width="190" src=<%= gallerites[gallerite].url %> frameborder="0" allowfullscreen></iframe>
+			<% } else if (gallerites[gallerite].type == "article") { %>
+			<a href=<%= gallerites[gallerite].url %> target="blank"><div style="text-align: center;"><img class="article-icon" src="/stylesheets/article.svg"></div></a>
 			<% } %>
 			<p class="description"><%= gallerites[gallerite].description %></p><hr class="minor-hr">
 			<p>Added by:</p>
@@ -70,6 +72,7 @@
 				<li><a href="https://github.com/amashamdan" target="blank">Github</a></li>
 				<li><a href="http://codepen.io/amashamdan/" target="blank">CodePen</a></li>
 			</ul>
+			<div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
 			<span style="font-size:0.9em">Copyright © Galleria 2016. All Rights Reserved</span>
 		</div>
 	</div>
