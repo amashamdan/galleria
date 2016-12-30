@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Galleria</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<link rel="stylesheet" href="stylesheets/screen.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<link href="http://weloveiconfonts.com/api/?family=fontawesome" rel="stylesheet">
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<script src="scripts/myGallerites.js"></script>
+</head>
+<body>
+	<div class="menu-bar">
+		<div class="sizer">
+			<div class="space-between-wrapper">
+				<a href="/" class="emblem-link"><h3>Galleria</h3></a>
+				<div class="button-wrapper">
+				<a href="/"><button class="generic-button">Home</button></a>
+				<a href="/addGallerite"><button class="generic-button">Add gallerite</button></a>
+				<a href="/login/logout"><button class="danger-button">Logout</button></a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="content sizer">
+		<% if (gallerites.length == 0) { %>
+		<p>You've got nothing! You haven't added any gallerites.</p>
+		<% } else { %>
+		<p><i><%= user._json.name %></i>, Here are the gallerites you added.</p><hr class="main-hr">
+		<% for (var gallerite in gallerites) { %>
+
+		<div class="gallerite">
+			<% if (gallerites[gallerite].type == "image") { %>
+			<img src=<%= gallerites[gallerite].url %>>
+			<% } else if (gallerites[gallerite].type == "youtube") { %>
+			<iframe width="190" src=<%= gallerites[gallerite].url %> frameborder="0" allowfullscreen></iframe>
+			<% } else if (gallerites[gallerite].type == "article") { %>
+			<a href=<%= gallerites[gallerite].url %> target="blank"><div style="text-align: center;"><img class="article-icon" src="/stylesheets/article.svg"></div></a>
+			<% } %>
+			<p class="description"><%= gallerites[gallerite].description %></p><hr class="minor-hr">
+
+			<div class="likes-section">
+				<p>Likes: <span class="no-of-likes"><%= gallerites[gallerite].likedBy.length %></span></p>
+
+				<% if (user && gallerites[gallerite].likedBy.indexOf(user.id) == -1) { %>
+
+				<button class="action like-button" gallerite=<%- JSON.stringify(gallerites[gallerite].serialNumber) %>><span class="fontawesome-thumbs-up"></span>Like</button>
+
+				<% } else if (user && gallerites[gallerite].likedBy.indexOf(user.id) > -1) { %>
+
+				<button class="action unlike-button" gallerite=<%- JSON.stringify(gallerites[gallerite].serialNumber) %>><span class="fontawesome-thumbs-down"></span>Unlike</button>
+
+				<% } %>
+			</div>
+			<a href="/explore/<%- JSON.stringify(gallerites[gallerite].serialNumber) %>"><button class="explore-button">Explore</button></a>
+			<a href="/delete/<%- JSON.stringify(gallerites[gallerite].serialNumber) %>"><button class="delete-button">Delete</button></a>
+		</div>
+
+
+		<% } %>
+		<% } %>
+	</div>
+
+
+	<div class="content sizer" style="margin-top: 20px;">
+		<% if (likedGallerites.length == 0) { %>
+		<p>Gallerites added by other users you liked appear here... You haven't liked any yet... Be nice and like something!</p>
+		<% } else { %>
+		<p>You liked these from other users.</p><hr class="main-hr">
+		<% for (var gallerite in likedGallerites) { %>
+
+		<div class="gallerite">
+			<% if (likedGallerites[gallerite].type == "image") { %>
+			<img src=<%= likedGallerites[gallerite].url %>>
+			<% } else if (likedGallerites[gallerite].type == "youtube") { %>
+			<iframe width="190" src=<%= likedGallerites[gallerite].url %> frameborder="0" allowfullscreen></iframe>
+			<% } else if (likedGallerites[gallerite].type == "article") { %>
+			<a href=<%= likedGallerites[gallerite].url %> target="blank"><div style="text-align: center;"><img class="article-icon" src="/stylesheets/article.svg"></div></a>
+			<% } %>
+			<p class="description"><%= likedGallerites[gallerite].description %></p><hr class="minor-hr">
+
+			<div class="likes-section">
+				<p>Likes: <span class="no-of-likes"><%= likedGallerites[gallerite].likedBy.length %></span></p>
+
+				<% if (user && likedGallerites[gallerite].likedBy.indexOf(user.id) == -1) { %>
+
+				<button class="action like-button" gallerite=<%- JSON.stringify(likedGallerites[gallerite].serialNumber) %>><span class="fontawesome-thumbs-up"></span>Like</button>
+
+				<% } else if (user && likedGallerites[gallerite].likedBy.indexOf(user.id) > -1) { %>
+
+				<button class="action unlike-button" gallerite=<%- JSON.stringify(likedGallerites[gallerite].serialNumber) %>><span class="fontawesome-thumbs-down"></span>Unlike</button>
+
+				<% } %>
+			</div>
+			<a href="/explore/<%- JSON.stringify(gallerites[gallerite].serialNumber) %>"><button class="explore-button">Explore</button></a>
+		</div>
+		<% } %>
+		<% } %>
+	</div>
+
+
+
+	<div class="footer">
+		<div class="sizer">
+			<p>Page by Amer Hamdan (email:<a href="mailto:amashamdan@gmail.com"> amashamdan@gmail.com</a>)</p>
+			<p>Visit my pages:</p>
+			<ul class="pages">
+				<li><a href="http://amashamdan.github.io/P1-portfolio/" target="blank">Portfolio</a></li>
+				<li><a href="https://www.linkedin.com/in/amerhamdan" target="blank">Linkedin</a></li>
+				<li><a href="https://github.com/amashamdan" target="blank">Github</a></li>
+				<li><a href="http://codepen.io/amashamdan/" target="blank">CodePen</a></li>
+			</ul>
+			<span style="font-size:0.9em">Copyright © Galleria 2016. All Rights Reserved</span>
+		</div>
+	</div>
+</body>
+</html>
