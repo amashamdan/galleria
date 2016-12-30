@@ -34,8 +34,8 @@ router.route("/")
 				var galleritesUpdated = false;
 				var usersUpdated = false;
 
-				gallerites.count(function(err, count) {
-					var serialNumber = count + 1;
+				gallerites.find({}).sort({"serialNumber": -1}).toArray(function(err, results) {
+					var serialNumber = results[0].serialNumber + 1;
 
 					if (req.body.type == "youtube") {
 						var link = req.body.link.replace("watch?v=", "embed/");
@@ -78,10 +78,8 @@ router.route("/")
 							);
 						}
 					});
-					
-				});
+				})
 			});
-			
 		}
 	});
 })
