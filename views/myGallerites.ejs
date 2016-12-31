@@ -3,13 +3,13 @@
 <head>
 	<title>Galleria</title>
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<link rel="stylesheet" href="stylesheets/screen.css">
+	<link rel="stylesheet" href="/stylesheets/screen.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 	<link href="http://weloveiconfonts.com/api/?family=fontawesome" rel="stylesheet">
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-	<script src="scripts/myGallerites.js"></script>
+	<script src="/scripts/myGallerites.js"></script>
 </head>
 <body>
 	<div class="menu-bar">
@@ -27,7 +27,7 @@
 
 	<div class="content sizer">
 		<% if (gallerites.length == 0) { %>
-		<p>You've got nothing! You haven't added any gallerites.</p>
+		<p>You've got nothing <i><%= user._json.name %></i>! You haven't added any gallerites.</p>
 		<% } else { %>
 		<p><i><%= user._json.name %></i>, Here are the gallerites you added.</p><hr class="main-hr">
 		<% for (var gallerite in gallerites) { %>
@@ -81,7 +81,12 @@
 			<a href=<%= likedGallerites[gallerite].url %> target="blank"><div style="text-align: center;"><img class="article-icon" src="/stylesheets/article.svg"></div></a>
 			<% } %>
 			<p class="description"><%= likedGallerites[gallerite].description %></p><hr class="minor-hr">
+			<p>Added by:</p>
 
+			<a class="adder" href="/user/<%= likedGallerites[gallerite].addedBy.userId %>">
+				<img src=<%= likedGallerites[gallerite].addedBy.imageLink %>>
+				<p><%= likedGallerites[gallerite].addedBy.name %></p>
+			</a><hr class="minor-hr">
 			<div class="likes-section">
 				<p>Likes: <span class="no-of-likes"><%= likedGallerites[gallerite].likedBy.length %></span></p>
 
@@ -95,6 +100,7 @@
 
 				<% } %>
 			</div>
+
 			<a href="/explore/<%- JSON.stringify(gallerites[gallerite].serialNumber) %>"><button class="explore-button">Explore</button></a>
 		</div>
 		<% } %>
