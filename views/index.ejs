@@ -22,7 +22,7 @@
 				<a href="/login" id="login-button" class="zocial twitter">Login</a>
 				<% } else { %>
 				<a href="/addGallerite"><button class="generic-button">Add gallerite</button></a>
-				<a href="myGallerites"><button class="generic-button">My gallerites</button></a>
+				<a href="/myGallerites"><button class="generic-button">My gallerites</button></a>
 				<a href="/login/logout"><button class="danger-button">Logout</button></a>
 				<% } %>
 				</div>
@@ -48,10 +48,13 @@
 			<p class="description"><%= gallerites[gallerite].description %></p><hr class="minor-hr">
 			<p>Added by:</p>
 
+			
 			<a class="adder" href="/user/<%= gallerites[gallerite].addedBy.userId %>">
 				<img src=<%= gallerites[gallerite].addedBy.imageLink %>>
 				<p><%= gallerites[gallerite].addedBy.name %></p>
 			</a><hr class="minor-hr">
+
+
 			<div class="likes-section">
 				<p>Likes: <span class="no-of-likes"><%= gallerites[gallerite].likedBy.length %></span></p>
 
