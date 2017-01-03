@@ -26,14 +26,8 @@ MongoClient.connect(mongoUrl, function(err, db) {
 					{"serialNumber": Number(req.params.serialNumber)},
 					{"$addToSet": {"likedBy": req.user.id}},
 					function() {
-						users.update(
-							{"userId": req.user.id},
-							{"$addToSet": {"likedGallerites": Number(req.params.serialNumber)}},
-							function() {
-								res.status(200);
-								res.end();
-							}
-						);
+						res.status(200);
+						res.end();
 					}
 				);
 			} else if (req.body.action == "unlike") {
@@ -41,14 +35,8 @@ MongoClient.connect(mongoUrl, function(err, db) {
 					{"serialNumber": Number(req.params.serialNumber)},
 					{"$pull": {"likedBy": req.user.id}},
 					function() {
-						users.update(
-							{"userId": req.user.id},
-							{"$pull": {"likedGallerites": Number(req.params.serialNumber)}},
-							function() {
-								res.status(200);
-								res.end();
-							}
-						);
+						res.status(200);
+						res.end();
 					}
 				);				
 			}

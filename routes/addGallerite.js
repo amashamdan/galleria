@@ -61,21 +61,13 @@ router.route("/")
 								"userId": req.user.id,
 								"name": req.user._json.name,
 								"imageLink": req.user._json.profile_image_url_https,
-								"addedGallerites": [serialNumber],
-								"likedGallerites": []
 							}, function() {
 								usersUpdated = true;
 								responseReady(res, galleritesUpdated, usersUpdated);
 							});
 						} else {
-							users.update(
-								{"userId": req.user.id},
-								{"$push": {"addedGallerites": serialNumber}},
-								function() {
-									usersUpdated = true;
-									responseReady(res, galleritesUpdated, usersUpdated);
-								}
-							);
+							usersUpdated = true;
+							responseReady(res, galleritesUpdated, usersUpdated);
 						}
 					});
 				})
