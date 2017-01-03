@@ -13,6 +13,20 @@ $(document).ready(function() {
 			}
 		});
 	});
+
+	$(".delete-button").click(function() {
+		if (confirm("Are you sure you want to delete this gallerite?")) {
+			var deletedGallerite = $(this).parent();
+			$.ajax({
+				url: "/delete/" + $(this).attr("gallerite"),
+				type: "POST",
+				statusCode: {
+					200: delete200(deletedGallerite),
+					404: action404
+				}
+			});
+		}
+	})
 });
 
 function action200(likesToIncrement, gallerite, action) {
@@ -25,6 +39,10 @@ function action200(likesToIncrement, gallerite, action) {
 		likesToIncrement.parent().siblings("button").switchClass("unlike-button", "like-button");
 		likesToIncrement.parent().siblings("button").html('<span class="fontawesome-thumbs-up"></span>Like');
 	}
+}
+
+function delete200(deletedGallerite) {
+	deletedGallerite.remove();
 }
 
 function action404() {
