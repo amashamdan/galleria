@@ -56,7 +56,7 @@
 				<% } %>
 			</div>
 			<a href="/explore/<%- JSON.stringify(gallerites[gallerite].serialNumber) %>"><button class="explore-button">Explore</button></a>
-			<a href="/delete/<%- JSON.stringify(gallerites[gallerite].serialNumber) %>"><button class="delete-button">Delete</button></a>
+			<button class="delete-button" gallerite=<%- JSON.stringify(gallerites[gallerite].serialNumber) %>>Delete</button>
 		</div>
 
 
