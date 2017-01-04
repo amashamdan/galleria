@@ -39,4 +39,69 @@ $(document).ready(function() {
 		$(".zoomed-image").fadeOut();
 		$("body").removeClass("stop-scrolling");
 	})
+
+
+	$(".action").click(function() {
+		var gallerite = $(this).attr("gallerite");
+		var clickedButton = $(this);
+		var action = $(this).attr("class").split(" ")[1].split("-")[0];
+		$.ajax({
+			url: "/action/" + gallerite,
+			type: "POST",
+			data: {action: action},
+			statusCode: {
+				200: action200(clickedButton, gallerite, action),
+				404: action404
+			}
+		});
+	});
+
+	$(".gallerite-delete-button").click(function() {
+		if (confirm("Are you sure you want to delete this gallerite?")) {
+			var deletedGallerite = $(this).siblings(".action");
+			$.ajax({
+				url: "/delete/" + deletedGallerite.attr("gallerite"),
+				type: "POST",
+				statusCode: {
+					200: delete200(),
+					404: action404
+				}
+			});
+		}
+	})
 });
+
+
+function action200(clickedButton, gallerite, action) {
+	if (action == "like") {
+		var countHtml = clickedButton.parent().siblings("#likes").children("span");
+		countHtml.html(Number(countHtml.html()) + 1);
+		clickedButton.switchClass("like-button", "unlike-button");
+		clickedButton.html('<span class="fontawesome-thumbs-down"></span>Unlike');
+		$("#likers-list").append(
+			'<a class="like-user" href="/user/' + user.id + '">' +
+			'<img src="' + user._json.profile_image_url_https + '">' + 
+			'<p>' + user._json.name + '</p></a>'
+		);
+
+	} else if (action == "unlike") {
+		var countHtml = clickedButton.parent().siblings("#likes").children("span");
+		countHtml.html(Number(countHtml.html()) - 1);
+		clickedButton.switchClass("unlike-button", "like-button");
+		clickedButton.html('<span class="fontawesome-thumbs-up"></span>Like');
+
+		$(".like-user").each(function(match) {
+			if ($(this).attr("href") == "/user/" + user.id) {
+				$(this).remove();
+			}
+		})
+	}
+}
+
+function delete200(deletedGallerite) {
+	window.location.replace("/myGallerites");
+}
+
+function action404() {
+	alert("An error occured.")
+}
