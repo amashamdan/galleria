@@ -69,6 +69,8 @@ var myGallerites = require("./routes/myGallerites");
 app.use("/myGallerites", myGallerites);
 var deleteGallerite = require("./routes/deleteGallerite");
 app.use("/delete", deleteGallerite);
+var user = require("./routes/user");
+app.use("/user", user);
 
 var port = Number(process.env.PORT || 8080);
 app.listen(port);
