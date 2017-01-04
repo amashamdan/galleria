@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Galleria</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<link rel="stylesheet" href="/stylesheets/screen.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<link href="http://weloveiconfonts.com/api/?family=fontawesome" rel="stylesheet">
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/css-social-buttons/1.2.0/css/zocial.min.css" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<script src="/scripts/user.js"></script>
+</head>
+<body>
+	<div class="menu-bar">
+		<div class="sizer">
+			<div class="space-between-wrapper">
+				<a href="/" class="emblem-link"><h3>Galleria</h3></a>
+				<div class="button-wrapper">
+				<a href="/"><button class="generic-button">Home</button></a>
+				<% if (!user) { %>
+				<a href="/login" id="login-button" class="zocial twitter">Login</a>	
+				<% } else { %>				
+				<a href="/addGallerite"><button class="generic-button">Add gallerite</button></a>
+				<a href="/myGallerites"><button class="generic-button">My gallerites</button></a>
+				<a href="/login/logout"><button class="danger-button">Logout</button></a>
+				<% } %>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="content sizer user-info">
+		<img src=<%= galleriaUser.imageLink %>>
+		<h3><i><%= galleriaUser.name %></i></h3>
+		<p>Gallerites added: <span id="gallerites-count"><%= addedGallerites.length %></span></p>
+	</div>
+
+	<div class="content sizer" style="margin-top: 20px;">
+		<% if (addedGallerites.length == 0) { %>
+		<p><i><%= galleriaUser.name %></i> hasn't added any gallerites. If you know him, would you do us a solid and ask him to add something?</p>
+		<% } else { %>
+		<p>Gallerites added by <i><%= galleriaUser.name %></i>.</p><hr class="main-hr">
+		<% } %>
+		
+
+		<% for (var gallerite in addedGallerites) { %>
+
+		<div class="gallerite">
+			<% if (addedGallerites[gallerite].type == "image") { %>
+			<img src=<%= addedGallerites[gallerite].url %>>
+			<% } else if (addedGallerites[gallerite].type == "youtube") { %>
+			<iframe width="190" src=<%= addedGallerites[gallerite].url %> frameborder="0" allowfullscreen></iframe>
+			<% } else if (addedGallerites[gallerite].type == "article") { %>
+			<a href=<%= addedGallerites[gallerite].url %> target="blank"><div style="text-align: center;"><img class="article-icon" src="/stylesheets/article.svg"></div></a>
+			<% } %>
+			<p class="description"><%= addedGallerites[gallerite].description %></p><hr class="minor-hr">
+			<div class="likes-section">
+				<p>Likes: <span class="no-of-likes"><%= addedGallerites[gallerite].likedBy.length %></span></p>
+
+				<% if (user && addedGallerites[gallerite].likedBy.indexOf(user.id) == -1) { %>
+
+				<button class="action like-button" gallerite=<%- JSON.stringify(addedGallerites[gallerite].serialNumber) %>><span class="fontawesome-thumbs-up"></span>Like</button>
+
+				<% } else if (user && addedGallerites[gallerite].likedBy.indexOf(user.id) > -1) { %>
+
+				<button class="action unlike-button" gallerite=<%- JSON.stringify(addedGallerites[gallerite].serialNumber) %>><span class="fontawesome-thumbs-down"></span>Unlike</button>
+				<% } %>
+			</div>
+			<a href="/explore/<%- JSON.stringify(addedGallerites[gallerite].serialNumber) %>"><button class="explore-button">Explore</button></a>
+			<% if (user && user.id == galleriaUser.userId) { %>			
+			<button class="delete-button" gallerite=<%- JSON.stringify(addedGallerites[gallerite].serialNumber) %>>Delete</button>
+			<% } %>
+		</div>
+		<% } %>
+	</div>
+
+
+	<div class="content sizer" style="margin-top: 20px;">
+		<% if (likedGallerites.length == 0) { %>
+		<p><i><%= galleriaUser.name %></i> hasn't liked any gallerites posted by other users. If you know him, would you do us a solid and ask him to like something?</p>
+		<% } else { %>
+		<p>Other users' gallerites which <i><%= galleriaUser.name %></i> liked.</p><hr class="main-hr">
+		<% } %>
+
+		<% for (var gallerite in likedGallerites) { %>
+
+		<div class="gallerite">
+			<% if (likedGallerites[gallerite].type == "image") { %>
+			<img src=<%= likedGallerites[gallerite].url %>>
+			<% } else if (likedGallerites[gallerite].type == "youtube") { %>
+			<iframe width="190" src=<%= likedGallerites[gallerite].url %> frameborder="0" allowfullscreen></iframe>
+			<% } else if (likedGallerites[gallerite].type == "article") { %>
+			<a href=<%= likedGallerites[gallerite].url %> target="blank"><div style="text-align: center;"><img class="article-icon" src="/stylesheets/article.svg"></div></a>
+			<% } %>
+			<p class="description"><%= likedGallerites[gallerite].description %></p><hr class="minor-hr">
+			<p>Added by:</p>
+
+			<a class="adder" href="/user/<%= likedGallerites[gallerite].addedBy.userId %>">
+				<img src=<%= likedGallerites[gallerite].addedBy.imageLink %>>
+				<p><%= likedGallerites[gallerite].addedBy.name %></p>
+			</a><hr class="minor-hr">
+			<div class="likes-section">
+				<p>Likes: <span class="no-of-likes"><%= likedGallerites[gallerite].likedBy.length %></span></p>
+
+				<% if (user && likedGallerites[gallerite].likedBy.indexOf(user.id) == -1) { %>
+
+				<button class="action like-button" gallerite=<%- JSON.stringify(likedGallerites[gallerite].serialNumber) %>><span class="fontawesome-thumbs-up"></span>Like</button>
+
+				<% } else if (user && likedGallerites[gallerite].likedBy.indexOf(user.id) > -1) { %>
+
+				<button class="action unlike-button" gallerite=<%- JSON.stringify(likedGallerites[gallerite].serialNumber) %>><span class="fontawesome-thumbs-down"></span>Unlike</button>
+
+				<% } %>
+			</div>
+
+			<a href="/explore/<%- JSON.stringify(gallerites[gallerite].serialNumber) %>"><button class="explore-button">Explore</button></a>
+		</div>
+		<% } %>
+			
+	</div>
+
+
+	<div class="footer">
+		<div class="sizer">
+			<p>Page by Amer Hamdan (email:<a href="mailto:amashamdan@gmail.com"> amashamdan@gmail.com</a>)</p>
+			<p>Visit my pages:</p>
+			<ul class="pages">
+				<li><a href="http://amashamdan.github.io/P1-portfolio/" target="blank">Portfolio</a></li>
+				<li><a href="https://www.linkedin.com/in/amerhamdan" target="blank">Linkedin</a></li>
+				<li><a href="https://github.com/amashamdan" target="blank">Github</a></li>
+				<li><a href="http://codepen.io/amashamdan/" target="blank">CodePen</a></li>
+			</ul>
+			<span style="font-size:0.9em">Copyright © Galleria 2016. All Rights Reserved</span>
+		</div>
+	</div>
+</body>
+</html>
