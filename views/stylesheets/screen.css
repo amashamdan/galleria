@@ -1,11 +1,11 @@
-/* line 11, ../sass/screen.scss */
+/* line 12, ../sass/screen.scss */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* line 17, ../sass/screen.scss */
+/* line 18, ../sass/screen.scss */
 body {
   background-image: url("wall.jpg");
   background-size: cover;
@@ -15,7 +15,7 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
-/* line 47, ../sass/screen.scss */
+/* line 48, ../sass/screen.scss */
 .generic-button {
   width: 90px;
   padding: 7px;
@@ -24,12 +24,12 @@ body {
   color: white;
   background-color: #373F51;
 }
-/* line 39, ../sass/screen.scss */
+/* line 40, ../sass/screen.scss */
 .generic-button:hover {
   cursor: pointer;
 }
 
-/* line 47, ../sass/screen.scss */
+/* line 48, ../sass/screen.scss */
 .danger-button {
   width: 90px;
   padding: 7px;
@@ -38,12 +38,12 @@ body {
   color: white;
   background-color: #F05D5E;
 }
-/* line 39, ../sass/screen.scss */
+/* line 40, ../sass/screen.scss */
 .danger-button:hover {
   cursor: pointer;
 }
 
-/* line 47, ../sass/screen.scss */
+/* line 48, ../sass/screen.scss */
 .ok-button {
   width: 90px;
   padding: 7px;
@@ -52,12 +52,12 @@ body {
   color: white;
   background-color: #0F7173;
 }
-/* line 39, ../sass/screen.scss */
+/* line 40, ../sass/screen.scss */
 .ok-button:hover {
   cursor: pointer;
 }
 
-/* line 52, ../sass/screen.scss */
+/* line 53, ../sass/screen.scss */
 .menu-bar {
   color: #404040;
   padding: 10px;
@@ -65,19 +65,19 @@ body {
   background-color: white;
   opacity: 0.9;
 }
-/* line 58, ../sass/screen.scss */
+/* line 59, ../sass/screen.scss */
 .menu-bar h3 {
   margin: 0;
 }
 
-/* line 63, ../sass/screen.scss */
+/* line 64, ../sass/screen.scss */
 .sizer {
   margin: 0 auto;
   width: 100%;
   max-width: 900px;
 }
 
-/* line 69, ../sass/screen.scss */
+/* line 70, ../sass/screen.scss */
 #login-button {
   width: 90px;
   font-family: 'Open Sans', sans-serif;
@@ -85,79 +85,79 @@ body {
   font-size: 0.8em;
 }
 
-/* line 76, ../sass/screen.scss */
+/* line 77, ../sass/screen.scss */
 .space-between-wrapper {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
-/* line 82, ../sass/screen.scss */
+/* line 83, ../sass/screen.scss */
 .content {
   background-color: white;
   opacity: 0.9;
   padding: 10px;
 }
 
-/* line 88, ../sass/screen.scss */
+/* line 89, ../sass/screen.scss */
 .gallerite {
   margin: 5px;
   padding: 5px;
   border: 1px solid gray;
   width: 200px;
 }
-/* line 93, ../sass/screen.scss */
+/* line 94, ../sass/screen.scss */
 .gallerite img {
   width: 100%;
 }
 
-/* line 98, ../sass/screen.scss */
+/* line 99, ../sass/screen.scss */
 .description {
   text-align: center;
 }
 
-/* line 102, ../sass/screen.scss */
+/* line 103, ../sass/screen.scss */
 .type-header {
   margin: 10px 0 10px 0;
   background-color: gray;
   padding: 5px;
   color: white;
 }
-/* line 107, ../sass/screen.scss */
+/* line 108, ../sass/screen.scss */
 .type-header:hover {
   cursor: pointer;
 }
 
-/* line 112, ../sass/screen.scss */
+/* line 113, ../sass/screen.scss */
 input {
   width: 220px;
   margin: 10px 0 10px 0;
   padding: 5px;
 }
 
-/* line 118, ../sass/screen.scss */
+/* line 119, ../sass/screen.scss */
 .main-hr {
   margin: 10px 0 10px 0;
 }
 
-/* line 122, ../sass/screen.scss */
+/* line 123, ../sass/screen.scss */
 .minor-hr {
   margin: 5px 0 5px 0;
 }
 
-/* line 126, ../sass/screen.scss */
+/* line 127, ../sass/screen.scss */
 .new-gallerite-form {
   display: none;
 }
 
-/* line 130, ../sass/screen.scss */
+/* line 131, ../sass/screen.scss */
 .error-message {
   background-color: #F05D5E;
   color: white;
   padding: 3px;
 }
 
-/* line 136, ../sass/screen.scss */
+/* line 137, ../sass/screen.scss */
 .adder {
   display: flex;
   flex-wrap: wrap;
@@ -165,14 +165,14 @@ input {
   font-size: 0.8em;
   color: #404040;
 }
-/* line 142, ../sass/screen.scss */
+/* line 143, ../sass/screen.scss */
 .adder img {
   width: 40px;
   height: 40px;
   margin-right: 5px;
 }
 
-/* line 149, ../sass/screen.scss */
+/* line 150, ../sass/screen.scss */
 .likes-section {
   display: flex;
   flex-wrap: wrap;
@@ -180,67 +180,144 @@ input {
   justify-content: space-between;
 }
 
-/* line 156, ../sass/screen.scss */
+/* line 157, ../sass/screen.scss */
 .like-button, .explore-button, .unlike-button, .delete-button {
   color: white;
   border: none;
   border-radius: 3px;
   padding: 5px;
 }
-/* line 161, ../sass/screen.scss */
+/* line 162, ../sass/screen.scss */
 .like-button:hover, .explore-button:hover, .unlike-button:hover, .delete-button:hover {
   cursor: pointer;
 }
 
-/* line 166, ../sass/screen.scss */
+/* line 167, ../sass/screen.scss */
 .like-button {
   background-color: #0F7173;
 }
 
-/* line 170, ../sass/screen.scss */
+/* line 171, ../sass/screen.scss */
 .explore-button, .delete-button {
   margin-top: 5px;
   width: 100%;
 }
 
-/* line 175, ../sass/screen.scss */
+/* line 176, ../sass/screen.scss */
 .explore-button {
   background-color: #373F51;
 }
 
-/* line 179, ../sass/screen.scss */
+/* line 180, ../sass/screen.scss */
 .delete-button {
   background-color: #F05D5E;
 }
 
-/* line 183, ../sass/screen.scss */
+/* line 184, ../sass/screen.scss */
 .unlike-button {
   background-color: #F05D5E;
 }
 
-/* line 188, ../sass/screen.scss */
+/* line 189, ../sass/screen.scss */
 [class*="fontawesome-"]:before {
   font-family: 'FontAwesome', sans-serif;
   margin-right: 5px;
 }
 
-/* line 193, ../sass/screen.scss */
+/* line 194, ../sass/screen.scss */
 .article-icon {
   width: 100px !important;
 }
 
-/* line 197, ../sass/screen.scss */
+/* line 198, ../sass/screen.scss */
 .emblem-link {
   text-decoration: none;
   color: #404040;
 }
 
-/* line 202, ../sass/screen.scss */
-.user-info {
+/* line 203, ../sass/screen.scss */
+.user-info, .gallerite-info {
   text-align: center;
 }
 
-/* line 206, ../sass/screen.scss */
+/* line 207, ../sass/screen.scss */
+.info-entry {
+  background-color: #D6D6D6;
+  width: 300px;
+  margin: 0 auto;
+  margin-top: 10px;
+  padding: 5px;
+  border-radius: 5px;
+}
+/* line 214, ../sass/screen.scss */
+.info-entry a {
+  color: #404040;
+}
+
+/* line 219, ../sass/screen.scss */
+.like-user {
+  width: 100%;
+  background-color: #D6D6D6;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 5px;
+  color: #404040;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+/* line 230, ../sass/screen.scss */
+.like-user img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+/* line 237, ../sass/screen.scss */
+#explore-image {
+  max-width: 300px;
+}
+/* line 239, ../sass/screen.scss */
+#explore-image:hover {
+  cursor: zoom-in;
+}
+
+/* line 244, ../sass/screen.scss */
+.zoomed-image {
+  display: none;
+  text-align: center;
+  position: absolute;
+  z-index: 2;
+  padding: 20px;
+}
+
+/* line 252, ../sass/screen.scss */
+.layer {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  z-index: 1;
+  opacity: 0.85;
+  padding: 0;
+}
+
+/* line 266, ../sass/screen.scss */
+.original-image:hover {
+  cursor: zoom-out;
+}
+
+/* line 271, ../sass/screen.scss */
+.stop-scrolling {
+  height: 100%;
+  overflow-y: hidden;
+}
+
+/* line 276, ../sass/screen.scss */
 .footer {
   font-size: 0.8em;
   color: #404040;
@@ -249,14 +326,14 @@ input {
   opacity: 0.9;
   padding: 5px;
 }
-/* line 213, ../sass/screen.scss */
+/* line 283, ../sass/screen.scss */
 .footer ul {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
-/* line 219, ../sass/screen.scss */
+/* line 289, ../sass/screen.scss */
 .footer a {
   color: #404040;
 }
