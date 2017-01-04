@@ -43,21 +43,28 @@
 		<% } %>
 		<p class="info-entry"><%= gallerite.description %></p>
 		<p class="info-entry">Added by: <a href="/user/<%= gallerite.addedBy.userId %>"><%= gallerite.addedBy.name %></a></p>
-		<p class="info-entry">Number of likes: <%= gallerite.likedBy.length %></p>
+		<p class="info-entry" id="likes">Number of likes: <span id="likes-count"><%= gallerite.likedBy.length %></span></p>
+		
+		<% if (user && gallerite.addedBy.userId == user.id) { %>
+		<div class="info-button-wrapper">
+		<button class="gallerite-delete-button">Delete Gallerite</button>
+		<% } %>
 
+		<% if (user && gallerite.likedBy.indexOf(user.id) == -1) { %>
+		<button class="action like-button" gallerite=<%- JSON.stringify(gallerite.serialNumber) %>><span class="fontawesome-thumbs-up"></span>Like</button>
+		<% } else if (user && gallerite.likedBy.indexOf(user.id) > -1) { %>
+		<button class="action unlike-button" gallerite=<%- JSON.stringify(gallerite.serialNumber) %>><span class="fontawesome-thumbs-down"></span>Unlike</button>
+		<% } %>
+		</div>
 	</div>
 
-	<div class="content sizer" style="margin-top: 20px;">
-		<% if (likeUsers.length == 0) { %>
-		<p>This gallerite doesn't seem to be interesting... Nobody liked it! If you think it is interesting be a nice person and like it.</p>
-		<% } else { %>
+	<div class="content sizer" id="likers-list" style="margin-top: 20px;">
 		<p>Users who liked this gallerite:</p><hr class="main-hr">
 		<% for (var likeUser in likeUsers) { %>
 		<a class="like-user" href="/user/<%= likeUsers[likeUser].userId %>">
 			<img src=<%= likeUsers[likeUser].imageLink %>>
 			<p><%= likeUsers[likeUser].name %></p>
 		</a>
-		<% } %>
 		<% } %>
 	</div>
 
@@ -81,5 +88,8 @@
 			<span style="font-size:0.9em">Copyright © Galleria 2016. All Rights Reserved</span>
 		</div>
 	</div>
+	<script>
+		var user = <%- JSON.stringify(user) %>
+	</script>
 </body>
 </html>
