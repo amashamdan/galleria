@@ -39,7 +39,15 @@ router.route("/")
 
 					if (req.body.type == "youtube") {
 						var link = req.body.link.replace("watch?v=", "embed/");
-						link = link.slice(0, link.indexOf("&t="));
+
+						if (link.indexOf("&t=") == -1) {
+							var endPoint = link.length
+						} else {
+							var endPoint = link.indexOf("&t=")
+						}
+
+						link = link.slice(0, endPoint);
+						
 					} else {
 						var link = req.body.link;
 					}
