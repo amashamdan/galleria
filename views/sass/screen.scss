@@ -273,6 +273,24 @@ input {
 	overflow-y: hidden;
 }
 
+.info-button-wrapper {
+	margin-top: 10px;
+	button {
+		width: 120px;
+	}
+}
+
+.gallerite-delete-button {
+	padding: 5px;
+	border-radius: 3px;
+	border: none;
+	color: $generic-button-font-color;
+	background-color: $danger-button-bk-color;
+	&:hover {
+		cursor: pointer;
+	}
+}
+
 .footer {
 	font-size: 0.8em;
 	color: $section-font-color;

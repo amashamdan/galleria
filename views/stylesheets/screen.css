@@ -318,6 +318,28 @@ input {
 }
 
 /* line 276, ../sass/screen.scss */
+.info-button-wrapper {
+  margin-top: 10px;
+}
+/* line 278, ../sass/screen.scss */
+.info-button-wrapper button {
+  width: 120px;
+}
+
+/* line 283, ../sass/screen.scss */
+.gallerite-delete-button {
+  padding: 5px;
+  border-radius: 3px;
+  border: none;
+  color: white;
+  background-color: #F05D5E;
+}
+/* line 289, ../sass/screen.scss */
+.gallerite-delete-button:hover {
+  cursor: pointer;
+}
+
+/* line 294, ../sass/screen.scss */
 .footer {
   font-size: 0.8em;
   color: #404040;
@@ -326,14 +348,14 @@ input {
   opacity: 0.9;
   padding: 5px;
 }
-/* line 283, ../sass/screen.scss */
+/* line 301, ../sass/screen.scss */
 .footer ul {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
-/* line 289, ../sass/screen.scss */
+/* line 307, ../sass/screen.scss */
 .footer a {
   color: #404040;
 }
