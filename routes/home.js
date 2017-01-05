@@ -26,8 +26,21 @@ MongoClient.connect(mongoUrl, function(err, db) {
 					{"serialNumber": Number(req.params.serialNumber)},
 					{"$addToSet": {"likedBy": req.user.id}},
 					function() {
-						res.status(200);
-						res.end();
+						users.find({"userId": req.user.id}).toArray(function(err, results) {
+							if (results.length == 0) {
+								users.insert({
+									"userId": req.user.id,
+									"name": req.user._json.name,
+									"imageLink": req.user._json.profile_image_url_https,
+								}, function() {
+									res.status(200);
+									res.end();									
+								});
+							} else {
+								res.status(200);
+								res.end();
+							}
+						})
 					}
 				);
 			} else if (req.body.action == "unlike") {
