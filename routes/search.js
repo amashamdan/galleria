@@ -31,8 +31,27 @@ function getData(req, res, db, entry) {
 	var formattedEntry = entry.toLowerCase();
 	formattedEntry = entry.replace(" ", "-");
 
-	gallerites.find({"tags": formattedEntry}).toArray(function(err, results) {
-		res.render("search.ejs", {user: user, gallerites: results, entry: entry});
+	gallerites.find({}).toArray(function(err, documents) {
+		var fullResults = [];
+		var partialResults = [];
+
+		for (var item in documents) {
+			for (var tag in documents[item].tags) {
+				if (documents[item].tags[tag] == formattedEntry) {
+					fullResults.push(documents[item]);
+					// Break to skip to next document. Because the next tag might match the entry which can lead to duplication.
+					break;
+				} else if (documents[item].tags[tag].indexOf(formattedEntry) != -1 && documents[item].tags[tag].indexOf(formattedEntry) != 0) {
+					partialResults.push(documents[item]);
+					break;
+				} else if (documents[item].tags[tag].indexOf(formattedEntry) == 0 && formattedEntry.length < documents[item].tags[tag].length) {
+					partialResults.push(documents[item]);
+					break;
+				}
+			}
+		}
+
+		res.render("search.ejs", {user: user, gallerites: fullResults, entry: entry, partialGallerites: partialResults});
 	});
 }
 
