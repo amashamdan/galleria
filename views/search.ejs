@@ -40,7 +40,7 @@
 	</div>
 
 	<div class="content sizer">
-		<% if (gallerites.length == 0) { %>
+		<% if (gallerites.length == 0 && partialGallerites.length == 0) { %>
 		<p>Your search <i>'<%= entry %>'</i> did not return any results!</p>
 		<% } else { %>
 		<p>Here are the gallerites which matched your tag search <i>'<%= entry %>'</i>.</p><hr class="main-hr">
@@ -79,6 +79,44 @@
 			<a href="/explore/<%- JSON.stringify(gallerites[gallerite].serialNumber) %>"><button class="explore-button">Explore</button></a>
 		</div>
 		<% } %>
+
+		<% for (var gallerite in partialGallerites) { %>
+		<div class="gallerite">
+			<% if (partialGallerites[gallerite].type == "image") { %>
+			<img src=<%= partialGallerites[gallerite].url %>>
+			<% } else if (partialGallerites[gallerite].type == "youtube") { %>
+			<iframe width="190" src=<%= partialGallerites[gallerite].url %> frameborder="0" allowfullscreen></iframe>
+			<% } else if (partialGallerites[gallerite].type == "article") { %>
+			<a href=<%= partialGallerites[gallerite].url %> target="blank"><div style="text-align: center;"><img class="article-icon" src="/stylesheets/article.svg"></div></a>
+			<% } %>
+			<p class="description"><%= partialGallerites[gallerite].description %></p><hr class="minor-hr">
+			<p>Added by:</p>
+
+			
+			<a class="adder" href="/user/<%= partialGallerites[gallerite].addedBy.userId %>">
+				<img src=<%= partialGallerites[gallerite].addedBy.imageLink %>>
+				<p><%= partialGallerites[gallerite].addedBy.name %></p>
+			</a><hr class="minor-hr">
+
+
+			<div class="likes-section">
+				<p>Likes: <span class="no-of-likes"><%= partialGallerites[gallerite].likedBy.length %></span></p>
+
+				<% if (user && partialGallerites[gallerite].likedBy.indexOf(user.id) == -1) { %>
+
+				<button class="action like-button" gallerite=<%- JSON.stringify(partialGallerites[gallerite].serialNumber) %>><span class="fontawesome-thumbs-up"></span>Like</button>
+
+				<% } else if (user && partialGallerites[gallerite].likedBy.indexOf(user.id) > -1) { %>
+
+				<button class="action unlike-button" gallerite=<%- JSON.stringify(partialGallerites[gallerite].serialNumber) %>><span class="fontawesome-thumbs-down"></span>Unlike</button>
+
+				<% } %>
+			</div>
+			<a href="/explore/<%- JSON.stringify(partialGallerites[gallerite].serialNumber) %>"><button class="explore-button">Explore</button></a>
+		</div>
+		<% } %>
+
+
 		<% } %>
 	</div>
 
