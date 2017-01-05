@@ -73,6 +73,8 @@ var user = require("./routes/user");
 app.use("/user", user);
 var explore = require("./routes/explore");
 app.use("/explore", explore);
+var search = require("./routes/search");
+app.use("/search", search);
 
 var port = Number(process.env.PORT || 8080);
 app.listen(port);
