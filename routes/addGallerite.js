@@ -29,13 +29,27 @@ router.route("/")
 					return
 				}
 
+				var enteredTags = req.body.tags;
+
+				enteredTags = enteredTags.split(",");
+
+				for (var tag in enteredTags) {
+					enteredTags[tag] = enteredTags[tag].toLowerCase();
+					enteredTags[tag] = enteredTags[tag].trim();
+					enteredTags[tag] = enteredTags[tag].replace(" ", "-");
+				}
+
 				var gallerites = db.collection("gallerites");
 				var users = db.collection("users");
 				var galleritesUpdated = false;
 				var usersUpdated = false;
 
 				gallerites.find({}).sort({"serialNumber": -1}).toArray(function(err, results) {
-					var serialNumber = results[0].serialNumber + 1;
+					if (results.length == 0) {
+						var serialNumber = 1;
+					} else {
+						var serialNumber = results[0].serialNumber + 1;
+					}
 
 					if (req.body.type == "youtube") {
 						var link = req.body.link.replace("watch?v=", "embed/");
@@ -58,7 +72,8 @@ router.route("/")
 						"url": link,
 						"addedBy": {"userId": req.user.id, "name": req.user._json.name, "imageLink": req.user._json.profile_image_url_https},
 						"description": req.body.description,
-						"likedBy": []
+						"likedBy": [],
+						"tags": enteredTags
 					}, function() {
 						galleritesUpdated = true;
 						responseReady(res, galleritesUpdated, usersUpdated);
