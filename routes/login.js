@@ -4,18 +4,25 @@ var Strategy = require("passport-twitter").Strategy;
 
 var router = express.Router();
 
+var lastPage;
+
 router.route("/")
-.get(passport.authenticate('twitter'));
+.get(savePage, passport.authenticate('twitter'));
 
 router.route("/return")
 .get(passport.authenticate('twitter', { failureRedirect: '/' }), function(req, res) {
-    res.redirect("/");
+    res.redirect(lastPage);
   });
 
 router.route("/logout")
-.get(function(req, res) {
+.get(savePage, function(req, res) {
 	req.logout();
-	res.redirect("/");
+	res.redirect(lastPage);
 });
+
+function savePage(req, res, next) {
+	lastPage = req.header("Referer");
+	next();
+}
 
 module.exports = router;
