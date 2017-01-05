@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Galleria</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<link rel="stylesheet" href="stylesheets/screen.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/css-social-buttons/1.2.0/css/zocial.min.css" rel="stylesheet">
+	<link href="http://weloveiconfonts.com/api/?family=fontawesome" rel="stylesheet">
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+</head>
+<body>
+	<div class="menu-bar">
+		<div class="sizer">
+			<div class="space-between-wrapper">
+				<a href="/" class="emblem-link"><h3>Galleria</h3></a>
+				<div class="button-wrapper">
+				<% if (!user) { %>
+				<a href="/login" id="login-button" class="zocial twitter">Login</a>
+				<% } else { %>
+				<a href="/addGallerite"><button class="generic-button">Add gallerite</button></a>
+				<a href="/myGallerites"><button class="generic-button">My gallerites</button></a>
+				<a href="/login/logout"><button class="danger-button">Logout</button></a>
+				<% } %>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="content sizer" id="search-div">
+		<form method="post" action="/search" id="gallerites-search">
+			<input name="input" placeholder="Enter tag to search">
+			<button type="submit" class="ok-button">Search</button>
+		</form>
+	</div>
+
+	<div class="content sizer">
+		<% if (gallerites.length == 0) { %>
+		<p>Your search <i>'<%= entry %>'</i> did not return any results!</p>
+		<% } else { %>
+		<p>Here are the gallerites which matched your tag search <i>'<%= entry %>'</i>.</p><hr class="main-hr">
+		<% for (var gallerite in gallerites) { %>
+		<div class="gallerite">
+			<% if (gallerites[gallerite].type == "image") { %>
+			<img src=<%= gallerites[gallerite].url %>>
+			<% } else if (gallerites[gallerite].type == "youtube") { %>
+			<iframe width="190" src=<%= gallerites[gallerite].url %> frameborder="0" allowfullscreen></iframe>
+			<% } else if (gallerites[gallerite].type == "article") { %>
+			<a href=<%= gallerites[gallerite].url %> target="blank"><div style="text-align: center;"><img class="article-icon" src="/stylesheets/article.svg"></div></a>
+			<% } %>
+			<p class="description"><%= gallerites[gallerite].description %></p><hr class="minor-hr">
+			<p>Added by:</p>
+
+			
+			<a class="adder" href="/user/<%= gallerites[gallerite].addedBy.userId %>">
+				<img src=<%= gallerites[gallerite].addedBy.imageLink %>>
+				<p><%= gallerites[gallerite].addedBy.name %></p>
+			</a><hr class="minor-hr">
+
+
+			<div class="likes-section">
+				<p>Likes: <span class="no-of-likes"><%= gallerites[gallerite].likedBy.length %></span></p>
+
+				<% if (user && gallerites[gallerite].likedBy.indexOf(user.id) == -1) { %>
+
+				<button class="action like-button" gallerite=<%- JSON.stringify(gallerites[gallerite].serialNumber) %>><span class="fontawesome-thumbs-up"></span>Like</button>
+
+				<% } else if (user && gallerites[gallerite].likedBy.indexOf(user.id) > -1) { %>
+
+				<button class="action unlike-button" gallerite=<%- JSON.stringify(gallerites[gallerite].serialNumber) %>><span class="fontawesome-thumbs-down"></span>Unlike</button>
+
+				<% } %>
+			</div>
+			<a href="/explore/<%- JSON.stringify(gallerites[gallerite].serialNumber) %>"><button class="explore-button">Explore</button></a>
+		</div>
+		<% } %>
+		<% } %>
+	</div>
+
+	<div class="footer">
+		<div class="sizer">
+			<p>Page by Amer Hamdan (email:<a href="mailto:amashamdan@gmail.com"> amashamdan@gmail.com</a>)</p>
+			<p>Visit my pages:</p>
+			<ul class="pages">
+				<li><a href="http://amashamdan.github.io/P1-portfolio/" target="blank">Portfolio</a></li>
+				<li><a href="https://www.linkedin.com/in/amerhamdan" target="blank">Linkedin</a></li>
+				<li><a href="https://github.com/amashamdan" target="blank">Github</a></li>
+				<li><a href="http://codepen.io/amashamdan/" target="blank">CodePen</a></li>
+			</ul>
+			<div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+			<span style="font-size:0.9em">Copyright © Galleria 2016. All Rights Reserved</span>
+		</div>
+	</div>
+</body>
+</html>
