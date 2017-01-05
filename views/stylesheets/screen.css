@@ -340,6 +340,24 @@ input {
 }
 
 /* line 294, ../sass/screen.scss */
+#search-div {
+  margin-bottom: 20px;
+  padding: 0 10px 0 10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+/* line 299, ../sass/screen.scss */
+#search-div form {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+/* line 303, ../sass/screen.scss */
+#search-div form input {
+  width: calc(100% - 100px);
+}
+
+/* line 309, ../sass/screen.scss */
 .footer {
   font-size: 0.8em;
   color: #404040;
@@ -348,14 +366,14 @@ input {
   opacity: 0.9;
   padding: 5px;
 }
-/* line 301, ../sass/screen.scss */
+/* line 316, ../sass/screen.scss */
 .footer ul {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
-/* line 307, ../sass/screen.scss */
+/* line 322, ../sass/screen.scss */
 .footer a {
   color: #404040;
 }

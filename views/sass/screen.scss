@@ -291,6 +291,21 @@ input {
 	}
 }
 
+#search-div {
+	margin-bottom: 20px;
+	padding: 0 10px 0 10px;
+	display: flex;
+	flex-wrap: wrap;
+	form {
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		input {
+			width: calc(100% - 100px);
+		}
+	}
+}
+
 .footer {
 	font-size: 0.8em;
 	color: $section-font-color;
