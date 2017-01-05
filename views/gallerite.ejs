@@ -45,6 +45,12 @@
 		<p class="info-entry">Added by: <a href="/user/<%= gallerite.addedBy.userId %>"><%= gallerite.addedBy.name %></a></p>
 		<p class="info-entry" id="likes">Number of likes: <span id="likes-count"><%= gallerite.likedBy.length %></span></p>
 		
+		<p class="info-entry">Tags:
+		<% for (var tag in gallerite.tags) { %>
+		<span class="tag"><a href="/search/<%= gallerite.tags[tag] %>">#<%= gallerite.tags[tag] %></a></span>
+		<% } %>
+		</p>
+
 		<% if (user && gallerite.addedBy.userId == user.id) { %>
 		<div class="info-button-wrapper">
 		<button class="gallerite-delete-button">Delete Gallerite</button>
