@@ -1,4 +1,12 @@
 $(document).ready(function() {
+	//bricklayer instance has some methods ⇢ and emits some events ⇢ which are useful for your interfaces' lifecycle.
+	/* If there are more than bricklayer divs on page, cannot select them all at once, so the each function creates a Bricklayer instance for each div seperately. code was originally:
+	var bricklayer = new Bricklayer(document.querySelector('.bricklayer'))
+	*/
+	$(".bricklayer").each(function() {
+		var bricklayer = new Bricklayer(this)
+	})
+		
 	$(".action").click(function() {
 		var gallerite = $(this).attr("gallerite");
 		var likesToIncrement = $(this).siblings("p").children(".no-of-likes");
