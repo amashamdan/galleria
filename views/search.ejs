@@ -47,7 +47,7 @@
 		<% for (var gallerite in gallerites) { %>
 		<div class="gallerite">
 			<% if (gallerites[gallerite].type == "image") { %>
-			<img src=<%= gallerites[gallerite].url %>>
+			<img src=<%= gallerites[gallerite].url %> onError="this.onerror=null;this.src='/stylesheets/error.png';">
 			<% } else if (gallerites[gallerite].type == "youtube") { %>
 			<iframe width="190" src=<%= gallerites[gallerite].url %> frameborder="0" allowfullscreen></iframe>
 			<% } else if (gallerites[gallerite].type == "article") { %>
@@ -83,7 +83,7 @@
 		<% for (var gallerite in partialGallerites) { %>
 		<div class="gallerite">
 			<% if (partialGallerites[gallerite].type == "image") { %>
-			<img src=<%= partialGallerites[gallerite].url %>>
+			<img src=<%= partialGallerites[gallerite].url %> onError="this.onerror=null;this.src='/stylesheets/error.png';">
 			<% } else if (partialGallerites[gallerite].type == "youtube") { %>
 			<iframe width="190" src=<%= partialGallerites[gallerite].url %> frameborder="0" allowfullscreen></iframe>
 			<% } else if (partialGallerites[gallerite].type == "article") { %>

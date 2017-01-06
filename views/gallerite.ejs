@@ -35,7 +35,7 @@
 
 
 		<% if (gallerite.type == "image") { %>
-		<img id="explore-image" src=<%= gallerite.url %>>
+		<img id="explore-image" src=<%= gallerite.url %> onError="this.onerror=null;this.src='/stylesheets/error.png';">
 		<% } else if (gallerite.type == "youtube") { %>
 		<iframe width="560" height="315" src=<%= gallerite.url %> frameborder="0" allowfullscreen></iframe>
 		<% } else if (gallerite.type == "article") { %>
@@ -76,7 +76,7 @@
 	</div>
 
 	<div class="zoomed-image">
-		<img class="original-image" src=<%= gallerite.url %>>
+		<img class="original-image" src=<%= gallerite.url %> onError="this.onerror=null;this.src='/stylesheets/error.png';">
 	</div>
 
 	<div class="layer">

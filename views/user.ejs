@@ -49,7 +49,7 @@
 
 		<div class="gallerite">
 			<% if (addedGallerites[gallerite].type == "image") { %>
-			<img src=<%= addedGallerites[gallerite].url %>>
+			<img src=<%= addedGallerites[gallerite].url %> onError="this.onerror=null;this.src='/stylesheets/error.png';">
 			<% } else if (addedGallerites[gallerite].type == "youtube") { %>
 			<iframe width="190" src=<%= addedGallerites[gallerite].url %> frameborder="0" allowfullscreen></iframe>
 			<% } else if (addedGallerites[gallerite].type == "article") { %>
@@ -88,7 +88,7 @@
 
 		<div class="gallerite">
 			<% if (likedGallerites[gallerite].type == "image") { %>
-			<img src=<%= likedGallerites[gallerite].url %>>
+			<img src=<%= likedGallerites[gallerite].url %> onError="this.onerror=null;this.src='/stylesheets/error.png';">
 			<% } else if (likedGallerites[gallerite].type == "youtube") { %>
 			<iframe width="190" src=<%= likedGallerites[gallerite].url %> frameborder="0" allowfullscreen></iframe>
 			<% } else if (likedGallerites[gallerite].type == "article") { %>
