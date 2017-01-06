@@ -36,6 +36,13 @@
 		</div>
 	</div>
 
+	<div class="content sizer" id="search-div">
+		<form method="post" action="/search" id="gallerites-search">
+			<input name="input" placeholder="Enter tag to search" required>
+			<button type="submit" class="ok-button">Search</button>
+		</form>
+	</div>
+
 	<div class="content sizer user-info">
 		<img src=<%= galleriaUser.imageLink %>>
 		<h3><i><%= galleriaUser.name %></i></h3>
