@@ -3,6 +3,11 @@
 <head>
 	<title>Galleria</title>
 	<meta name="viewport" content="width=device-width,initial-scale=1">
+
+	<!-- Have these loaded before local css file to override unwanted behaviour of default css. -->
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bricklayer/0.4.2/bricklayer.min.css">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/bricklayer/0.4.2/bricklayer.min.js"></script>
+
 	<link rel="stylesheet" href="/stylesheets/screen.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
@@ -44,36 +49,36 @@
 		<p>Gallerites added by <i><%= galleriaUser.name %></i>.</p><hr class="main-hr">
 		<% } %>
 		
+		<div class="bricklayer">
+			<% for (var gallerite in addedGallerites) { %>
+			<div class="gallerite">
+				<% if (addedGallerites[gallerite].type == "image") { %>
+				<img src=<%= addedGallerites[gallerite].url %> onError="this.onerror=null;this.src='/stylesheets/error.png';">
+				<% } else if (addedGallerites[gallerite].type == "youtube") { %>
+				<iframe width="190" src=<%= addedGallerites[gallerite].url %> frameborder="0" allowfullscreen></iframe>
+				<% } else if (addedGallerites[gallerite].type == "article") { %>
+				<a href=<%= addedGallerites[gallerite].url %> target="blank"><div style="text-align: center;"><img class="article-icon" src="/stylesheets/article.svg"></div></a>
+				<% } %>
+				<p class="description"><%= addedGallerites[gallerite].description %></p><hr class="minor-hr">
+				<div class="likes-section">
+					<p>Likes: <span class="no-of-likes"><%= addedGallerites[gallerite].likedBy.length %></span></p>
 
-		<% for (var gallerite in addedGallerites) { %>
+					<% if (user && addedGallerites[gallerite].likedBy.indexOf(user.id) == -1) { %>
 
-		<div class="gallerite">
-			<% if (addedGallerites[gallerite].type == "image") { %>
-			<img src=<%= addedGallerites[gallerite].url %> onError="this.onerror=null;this.src='/stylesheets/error.png';">
-			<% } else if (addedGallerites[gallerite].type == "youtube") { %>
-			<iframe width="190" src=<%= addedGallerites[gallerite].url %> frameborder="0" allowfullscreen></iframe>
-			<% } else if (addedGallerites[gallerite].type == "article") { %>
-			<a href=<%= addedGallerites[gallerite].url %> target="blank"><div style="text-align: center;"><img class="article-icon" src="/stylesheets/article.svg"></div></a>
-			<% } %>
-			<p class="description"><%= addedGallerites[gallerite].description %></p><hr class="minor-hr">
-			<div class="likes-section">
-				<p>Likes: <span class="no-of-likes"><%= addedGallerites[gallerite].likedBy.length %></span></p>
+					<button class="action like-button" gallerite=<%- JSON.stringify(addedGallerites[gallerite].serialNumber) %>><span class="fontawesome-thumbs-up"></span>Like</button>
 
-				<% if (user && addedGallerites[gallerite].likedBy.indexOf(user.id) == -1) { %>
+					<% } else if (user && addedGallerites[gallerite].likedBy.indexOf(user.id) > -1) { %>
 
-				<button class="action like-button" gallerite=<%- JSON.stringify(addedGallerites[gallerite].serialNumber) %>><span class="fontawesome-thumbs-up"></span>Like</button>
-
-				<% } else if (user && addedGallerites[gallerite].likedBy.indexOf(user.id) > -1) { %>
-
-				<button class="action unlike-button" gallerite=<%- JSON.stringify(addedGallerites[gallerite].serialNumber) %>><span class="fontawesome-thumbs-down"></span>Unlike</button>
+					<button class="action unlike-button" gallerite=<%- JSON.stringify(addedGallerites[gallerite].serialNumber) %>><span class="fontawesome-thumbs-down"></span>Unlike</button>
+					<% } %>
+				</div>
+				<a href="/explore/<%- JSON.stringify(addedGallerites[gallerite].serialNumber) %>"><button class="explore-button">Explore</button></a>
+				<% if (user && user.id == galleriaUser.userId) { %>			
+				<button class="delete-button" gallerite=<%- JSON.stringify(addedGallerites[gallerite].serialNumber) %>>Delete</button>
 				<% } %>
 			</div>
-			<a href="/explore/<%- JSON.stringify(addedGallerites[gallerite].serialNumber) %>"><button class="explore-button">Explore</button></a>
-			<% if (user && user.id == galleriaUser.userId) { %>			
-			<button class="delete-button" gallerite=<%- JSON.stringify(addedGallerites[gallerite].serialNumber) %>>Delete</button>
 			<% } %>
 		</div>
-		<% } %>
 	</div>
 
 
@@ -83,42 +88,45 @@
 		<% } else { %>
 		<p>Other users' gallerites which <i><%= galleriaUser.name %></i> liked.</p><hr class="main-hr">
 		<% } %>
+		<div class="bricklayer">
 
-		<% for (var gallerite in likedGallerites) { %>
+			<% for (var gallerite in likedGallerites) { %>
 
-		<div class="gallerite">
-			<% if (likedGallerites[gallerite].type == "image") { %>
-			<img src=<%= likedGallerites[gallerite].url %> onError="this.onerror=null;this.src='/stylesheets/error.png';">
-			<% } else if (likedGallerites[gallerite].type == "youtube") { %>
-			<iframe width="190" src=<%= likedGallerites[gallerite].url %> frameborder="0" allowfullscreen></iframe>
-			<% } else if (likedGallerites[gallerite].type == "article") { %>
-			<a href=<%= likedGallerites[gallerite].url %> target="blank"><div style="text-align: center;"><img class="article-icon" src="/stylesheets/article.svg"></div></a>
-			<% } %>
-			<p class="description"><%= likedGallerites[gallerite].description %></p><hr class="minor-hr">
-			<p>Added by:</p>
-
-			<a class="adder" href="/user/<%= likedGallerites[gallerite].addedBy.userId %>">
-				<img src=<%= likedGallerites[gallerite].addedBy.imageLink %>>
-				<p><%= likedGallerites[gallerite].addedBy.name %></p>
-			</a><hr class="minor-hr">
-			<div class="likes-section">
-				<p>Likes: <span class="no-of-likes"><%= likedGallerites[gallerite].likedBy.length %></span></p>
-
-				<% if (user && likedGallerites[gallerite].likedBy.indexOf(user.id) == -1) { %>
-
-				<button class="action like-button" gallerite=<%- JSON.stringify(likedGallerites[gallerite].serialNumber) %>><span class="fontawesome-thumbs-up"></span>Like</button>
-
-				<% } else if (user && likedGallerites[gallerite].likedBy.indexOf(user.id) > -1) { %>
-
-				<button class="action unlike-button" gallerite=<%- JSON.stringify(likedGallerites[gallerite].serialNumber) %>><span class="fontawesome-thumbs-down"></span>Unlike</button>
-
+			<div class="gallerite">
+				<% if (likedGallerites[gallerite].type == "image") { %>
+				<img src=<%= likedGallerites[gallerite].url %> onError="this.onerror=null;this.src='/stylesheets/error.png';">
+				<% } else if (likedGallerites[gallerite].type == "youtube") { %>
+				<iframe width="190" src=<%= likedGallerites[gallerite].url %> frameborder="0" allowfullscreen></iframe>
+				<% } else if (likedGallerites[gallerite].type == "article") { %>
+				<a href=<%= likedGallerites[gallerite].url %> target="blank"><div style="text-align: center;"><img class="article-icon" src="/stylesheets/article.svg"></div></a>
 				<% } %>
+				<p class="description"><%= likedGallerites[gallerite].description %></p><hr class="minor-hr">
+				<p>Added by:</p>
+
+				<a class="adder" href="/user/<%= likedGallerites[gallerite].addedBy.userId %>">
+					<img src=<%= likedGallerites[gallerite].addedBy.imageLink %>>
+					<p><%= likedGallerites[gallerite].addedBy.name %></p>
+				</a><hr class="minor-hr">
+				<div class="likes-section">
+					<p>Likes: <span class="no-of-likes"><%= likedGallerites[gallerite].likedBy.length %></span></p>
+
+					<% if (user && likedGallerites[gallerite].likedBy.indexOf(user.id) == -1) { %>
+
+					<button class="action like-button" gallerite=<%- JSON.stringify(likedGallerites[gallerite].serialNumber) %>><span class="fontawesome-thumbs-up"></span>Like</button>
+
+					<% } else if (user && likedGallerites[gallerite].likedBy.indexOf(user.id) > -1) { %>
+
+					<button class="action unlike-button" gallerite=<%- JSON.stringify(likedGallerites[gallerite].serialNumber) %>><span class="fontawesome-thumbs-down"></span>Unlike</button>
+
+					<% } %>
+				</div>
+
+				<a href="/explore/<%- JSON.stringify(likedGallerites[gallerite].serialNumber) %>"><button class="explore-button">Explore</button></a>
 			</div>
 
-			<a href="/explore/<%- JSON.stringify(likedGallerites[gallerite].serialNumber) %>"><button class="explore-button">Explore</button></a>
+			<% } %>
+
 		</div>
-		<% } %>
-			
 	</div>
 
 
