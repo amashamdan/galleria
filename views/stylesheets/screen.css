@@ -102,7 +102,6 @@ body {
   margin: 5px;
   padding: 5px;
   border: 1px solid gray;
-  width: 200px;
 }
 /* line 92, ../sass/screen.scss */
 .gallerite img {
@@ -374,4 +373,22 @@ input {
 /* line 320, ../sass/screen.scss */
 .footer a {
   color: #404040;
+}
+
+/* line 326, ../sass/screen.scss */
+.bricklayer-column-sizer {
+  width: 25%;
+}
+
+@media screen and (max-width: 800px) {
+  /* line 333, ../sass/screen.scss */
+  .bricklayer-column-sizer {
+    width: 33.3%;
+  }
+}
+@media screen and (max-width: 500px) {
+  /* line 339, ../sass/screen.scss */
+  .bricklayer-column-sizer {
+    width: 50%;
+  }
 }

@@ -88,7 +88,7 @@ $buttons: generic danger ok;
 	margin: 5px;
 	padding: 5px;
 	border: 1px solid gray;
-	width: 200px;
+	//width: 200px;
 	img {
 		width: 100%;
 	}
@@ -319,5 +319,24 @@ input {
 	}
 	a {
 		color: $section-font-color;
+	}
+}
+
+
+.bricklayer-column-sizer {
+	width: 25%;
+}
+
+
+
+@media screen and (max-width: 800px) {
+	.bricklayer-column-sizer {
+		width: 33.3%; 
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.bricklayer-column-sizer {
+		width: 50%;
 	}
 }
