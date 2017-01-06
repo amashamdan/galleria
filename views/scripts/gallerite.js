@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	$("#explore-image").click(function() {
 		// lloks like using $(".original-image").width doesn't work because the image is hidden
-		if (document.getElementById('explore-image').naturalWidth < $(window).width() && $(".original-image").height() < document.getElementById('explore-image').naturalHeight) {
+		if (document.getElementById('explore-image').naturalWidth < $(window).width() && document.getElementById('explore-image').naturalHeight < $(window).height()) {
 			$(".zoomed-image").css({
 				"top": "calc((100% - " + document.getElementById('explore-image').naturalHeight + "px)/2)",
 				"left": "calc((100% - " + document.getElementById('explore-image').naturalWidth + "px)/2)",
