@@ -6,19 +6,23 @@
 	<link rel="stylesheet" href="/stylesheets/screen.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<!-- fontawesome for like and unlike buttons -->
 	<link href="http://weloveiconfonts.com/api/?family=fontawesome" rel="stylesheet">
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+	<!-- Zocial for twitter login button -->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/css-social-buttons/1.2.0/css/zocial.min.css" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 	<script src="/scripts/gallerite.js"></script>
 </head>
 <body>
+	<!-- Menu bar -->
 	<div class="menu-bar">
 		<div class="sizer">
 			<div class="space-between-wrapper">
 				<a href="/" class="emblem-link"><h3>Galleria</h3></a>
 				<div class="button-wrapper">
 				<a href="/"><button class="generic-button">Home</button></a>
+				<!-- The remaining buttons are shown depending on whether a user is signed in or not. -->
 				<% if (!user) { %>
 				<a href="/login" id="login-button" class="zocial twitter">Login</a>	
 				<% } else { %>				
@@ -30,18 +34,19 @@
 			</div>
 		</div>
 	</div>
-
+	<!-- The search bar div. Here the user can do a tag search. -->
 	<div class="content sizer" id="search-div">
 		<form method="post" action="/search" id="gallerites-search">
 			<input name="input" placeholder="Enter tag to search" required>
 			<button type="submit" class="ok-button">Search</button>
 		</form>
 	</div>
-
+	<!-- The gallerite's information section. -->
 	<div class="content sizer gallerite-info">
-
-
+		<!-- The if statement checks the gallerite type. -->
 		<% if (gallerite.type == "image") { %>
+		<!-- onError attribute displays the quoted image if the image in the src attribute is broken. -->
+		<span style="font-size: 0.75em;">Click on the image to zoom in</span><br>
 		<img id="explore-image" src=<%= gallerite.url %> onError="this.onerror=null;this.src='/stylesheets/error.png';">
 		<% } else if (gallerite.type == "youtube") { %>
 		<iframe width="560" height="315" src=<%= gallerite.url %> frameborder="0" allowfullscreen></iframe>
@@ -51,19 +56,18 @@
 		<p class="info-entry"><%= gallerite.description %></p>
 		<p class="info-entry">Added by: <a href="/user/<%= gallerite.addedBy.userId %>"><%= gallerite.addedBy.name %></a></p>
 		<p class="info-entry" id="likes">Number of likes: <span id="likes-count"><%= gallerite.likedBy.length %></span></p>
-		
+		<!-- A for loop to append each tag. -->
 		<p class="info-entry">Tags:
 		<% for (var tag in gallerite.tags) { %>
 		<span class="tag"><a href="/search/<%= gallerite.tags[tag] %>">#<%= gallerite.tags[tag] %></a></span>
 		<% } %>
 		</p>
-
+		<!--  wrapper for like/unlike and delete buttons. -->
 		<div class="info-button-wrapper">
 		<% if (user && gallerite.addedBy.userId == user.id) { %>
-		
 		<button class="gallerite-delete-button">Delete Gallerite</button>
 		<% } %>
-
+		<!-- If statement checls whether a like or unlike button should be placed. -->
 		<% if (user && gallerite.likedBy.indexOf(user.id) == -1) { %>
 		<button class="action like-button" gallerite=<%- JSON.stringify(gallerite.serialNumber) %>><span class="fontawesome-thumbs-up"></span>Like</button>
 		<% } else if (user && gallerite.likedBy.indexOf(user.id) > -1) { %>
@@ -71,9 +75,10 @@
 		<% } %>
 		</div>
 	</div>
-
+	<!-- Users section. Shows users who liked the gallerite. -->
 	<div class="content sizer" id="likers-list" style="margin-top: 20px;">
 		<p>Users who liked this gallerite:</p><hr class="main-hr">
+		<!-- Append each user. -->
 		<% for (var likeUser in likeUsers) { %>
 		<a class="like-user" href="/user/<%= likeUsers[likeUser].userId %>">
 			<img src=<%= likeUsers[likeUser].imageLink %>>
@@ -81,14 +86,14 @@
 		</a>
 		<% } %>
 	</div>
-
+	<!-- The zoomed in image div. Initially hidden. Fades in when the user clicks on the small image. -->
 	<div class="zoomed-image">
 		<img class="original-image" src=<%= gallerite.url %> onError="this.onerror=null;this.src='/stylesheets/error.png';">
 	</div>
-
+	<!-- layer div gives a black trasparent background below the zoomed image. Also initially hidden. -->
 	<div class="layer">
 	</div>
-
+	<!-- Footer section -->
 	<div class="footer">
 		<div class="sizer">
 			<p>Page by Amer Hamdan (email:<a href="mailto:amashamdan@gmail.com"> amashamdan@gmail.com</a>)</p>
@@ -103,6 +108,7 @@
 		</div>
 	</div>
 	<script>
+		/* Needed to be saved to be used in gallerite.js */
 		var user = <%- JSON.stringify(user) %>
 	</script>
 </body>

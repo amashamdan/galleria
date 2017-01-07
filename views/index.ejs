@@ -3,28 +3,28 @@
 <head>
 	<title>Galleria</title>
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<!-- Have these loaded before local css file to override unwanted behaviour of default css. -->
+	<!-- Have these loaded before local css file to override unwanted behaviour of default css. bricklayer library to show pinterest-like layout. -->
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bricklayer/0.4.2/bricklayer.min.css">
 	<script src="//cdnjs.cloudflare.com/ajax/libs/bricklayer/0.4.2/bricklayer.min.js"></script>
-
 	<link rel="stylesheet" href="stylesheets/screen.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<!-- Zocial for twitter login button -->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/css-social-buttons/1.2.0/css/zocial.min.css" rel="stylesheet">
+	<!-- fontawesome for like and unlike buttons -->
 	<link href="http://weloveiconfonts.com/api/?family=fontawesome" rel="stylesheet">
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-	
-
-	
 	<script src="scripts/index.js"></script>
 </head>
 <body>
+	<!-- Menu bar -->
 	<div class="menu-bar">
 		<div class="sizer">
 			<div class="space-between-wrapper">
 				<a href="/" class="emblem-link"><h3>Galleria</h3></a>
 				<div class="button-wrapper">
+				<!-- The remaining buttons are shown depending on whether a user is signed in or not. -->
 				<% if (!user) { %>
 				<a href="/login" id="login-button" class="zocial twitter">Login</a>
 				<% } else { %>
@@ -36,24 +36,28 @@
 			</div>
 		</div>
 	</div>
-
+	<!-- The search bar div. Here the user can do a tag search. -->
 	<div class="content sizer" id="search-div">
 		<form method="post" action="/search" id="gallerites-search">
 			<input name="input" placeholder="Enter tag to search" required>
 			<button type="submit" class="ok-button">Search</button>
 		</form>
 	</div>
-
+	<!-- This div shows all of the gallerties. -->
 	<div class="content sizer">
 		<p>Added gallerites</p><hr class="main-hr">
+		<!-- A message in case no gallerites exist. -->
 		<% if (gallerites.length == 0) { %>
 		<p>We're still new and small :(</p>
 		<p>Nobody added any gallerites... Please be the first to add one.</p>
 		<% } else { %>
+		<!-- bricklayer class to show pinterest layout. -->
 		<div class="bricklayer">
+			<!-- Loop through gallerites and extract information. -->
 			<% for (var gallerite in gallerites) { %>
 			<div class="gallerite">
 				<% if (gallerites[gallerite].type == "image") { %>
+				<!-- onError attribute displays the quoted image if the image in the src attribute is broken. -->
 				<img src=<%= gallerites[gallerite].url %> onError="this.onerror=null;this.src='/stylesheets/error.png';">
 				<% } else if (gallerites[gallerite].type == "youtube") { %>
 				<iframe width="190" src=<%= gallerites[gallerite].url %> frameborder="0" allowfullscreen></iframe>
@@ -61,26 +65,20 @@
 				<a href=<%= gallerites[gallerite].url %> target="blank"><div style="text-align: center;"><img class="article-icon" src="/stylesheets/article.svg"></div></a>
 				<% } %>
 				<p class="description"><%= gallerites[gallerite].description %></p><hr class="minor-hr">
+				<!-- Added by sub-section -->
 				<p>Added by:</p>
-
-				
 				<a class="adder" href="/user/<%= gallerites[gallerite].addedBy.userId %>">
 					<img src=<%= gallerites[gallerite].addedBy.imageLink %>>
 					<p><%= gallerites[gallerite].addedBy.name %></p>
 				</a><hr class="minor-hr">
-
-
+				<!-- Likes section -->
 				<div class="likes-section">
 					<p>Likes: <span class="no-of-likes"><%= gallerites[gallerite].likedBy.length %></span></p>
-
+					<!-- if  statement to decide what to render, like/unlike button. -->
 					<% if (user && gallerites[gallerite].likedBy.indexOf(user.id) == -1) { %>
-
 					<button class="action like-button" gallerite=<%- JSON.stringify(gallerites[gallerite].serialNumber) %>><span class="fontawesome-thumbs-up"></span>Like</button>
-
 					<% } else if (user && gallerites[gallerite].likedBy.indexOf(user.id) > -1) { %>
-
 					<button class="action unlike-button" gallerite=<%- JSON.stringify(gallerites[gallerite].serialNumber) %>><span class="fontawesome-thumbs-down"></span>Unlike</button>
-
 					<% } %>
 				</div>
 				<a href="/explore/<%- JSON.stringify(gallerites[gallerite].serialNumber) %>"><button class="explore-button">Explore</button></a>
@@ -89,7 +87,7 @@
 		</div>
 		<% } %>
 	</div>
-
+	<!-- Footer section -->
 	<div class="footer">
 		<div class="sizer">
 			<p>Page by Amer Hamdan (email:<a href="mailto:amashamdan@gmail.com"> amashamdan@gmail.com</a>)</p>

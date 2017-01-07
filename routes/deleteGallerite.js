@@ -1,3 +1,4 @@
+/* THIS ROUTE HANDLES DELETING A GALLERITE. */
 var express = require("express");
 var mongodb = require("mongodb");
 
@@ -15,8 +16,9 @@ router.route("/:serialNumber")
 		}
 
 		var gallerites = db.collection("gallerites");
-
+		/* Gallerite is looked up and removed. */
 		gallerites.remove({"serialNumber": Number(req.params.serialNumber)}, function() {
+			/* A status 200 is sent to the client. */
 			res.status(200);
 			res.end();
 		});

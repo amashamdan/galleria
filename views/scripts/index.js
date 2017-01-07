@@ -6,7 +6,7 @@ $(document).ready(function() {
 	$(".bricklayer").each(function() {
 		var bricklayer = new Bricklayer(this)
 	})
-		
+	/* Very similar to the code in gallerite.js with minor differences. */
 	$(".action").click(function() {
 		var gallerite = $(this).attr("gallerite");
 		var likesToIncrement = $(this).siblings("p").children(".no-of-likes");

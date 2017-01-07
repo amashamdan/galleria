@@ -3,11 +3,9 @@
 <head>
 	<title>Galleria</title>
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-
-	<!-- Have these loaded before local css file to override unwanted behaviour of default css. -->
+	<!-- Have these loaded before local css file to override unwanted behaviour of default css. bricklayer library to show pinterest-like layout. -->
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bricklayer/0.4.2/bricklayer.min.css">
 	<script src="//cdnjs.cloudflare.com/ajax/libs/bricklayer/0.4.2/bricklayer.min.js"></script>
-
 	<link rel="stylesheet" href="/stylesheets/screen.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
@@ -18,6 +16,7 @@
 	<script src="/scripts/user.js"></script>
 </head>
 <body>
+	<!-- Menu bar -->
 	<div class="menu-bar">
 		<div class="sizer">
 			<div class="space-between-wrapper">
@@ -35,27 +34,26 @@
 			</div>
 		</div>
 	</div>
-
+	<!-- The search bar div. Here the user can do a tag search. -->
 	<div class="content sizer" id="search-div">
 		<form method="post" action="/search" id="gallerites-search">
 			<input name="input" placeholder="Enter tag to search" required>
 			<button type="submit" class="ok-button">Search</button>
 		</form>
 	</div>
-
+	<!-- The user's information -->
 	<div class="content sizer user-info">
 		<img src=<%= galleriaUser.imageLink %>>
 		<h3><i><%= galleriaUser.name %></i></h3>
 		<p>Gallerites added: <span id="gallerites-count"><%= addedGallerites.length %></span></p>
 	</div>
-
+	<!-- Gallerites which the user added. -->
 	<div class="content sizer" style="margin-top: 20px;">
 		<% if (addedGallerites.length == 0) { %>
 		<p><i><%= galleriaUser.name %></i> hasn't added any gallerites. If you know him, would you do us a solid and ask him to add something?</p>
 		<% } else { %>
 		<p>Gallerites added by <i><%= galleriaUser.name %></i>.</p><hr class="main-hr">
 		<% } %>
-		
 		<div class="bricklayer">
 			<% for (var gallerite in addedGallerites) { %>
 			<div class="gallerite">
@@ -69,13 +67,9 @@
 				<p class="description"><%= addedGallerites[gallerite].description %></p><hr class="minor-hr">
 				<div class="likes-section">
 					<p>Likes: <span class="no-of-likes"><%= addedGallerites[gallerite].likedBy.length %></span></p>
-
 					<% if (user && addedGallerites[gallerite].likedBy.indexOf(user.id) == -1) { %>
-
 					<button class="action like-button" gallerite=<%- JSON.stringify(addedGallerites[gallerite].serialNumber) %>><span class="fontawesome-thumbs-up"></span>Like</button>
-
 					<% } else if (user && addedGallerites[gallerite].likedBy.indexOf(user.id) > -1) { %>
-
 					<button class="action unlike-button" gallerite=<%- JSON.stringify(addedGallerites[gallerite].serialNumber) %>><span class="fontawesome-thumbs-down"></span>Unlike</button>
 					<% } %>
 				</div>
@@ -87,8 +81,7 @@
 			<% } %>
 		</div>
 	</div>
-
-
+	<!-- Gallerites which the user liked and were added by other users. -->
 	<div class="content sizer" style="margin-top: 20px;">
 		<% if (likedGallerites.length == 0) { %>
 		<p><i><%= galleriaUser.name %></i> hasn't liked any gallerites posted by other users. If you know him, would you do us a solid and ask him to like something?</p>
@@ -96,9 +89,7 @@
 		<p>Other users' gallerites which <i><%= galleriaUser.name %></i> liked.</p><hr class="main-hr">
 		<% } %>
 		<div class="bricklayer">
-
 			<% for (var gallerite in likedGallerites) { %>
-
 			<div class="gallerite">
 				<% if (likedGallerites[gallerite].type == "image") { %>
 				<img src=<%= likedGallerites[gallerite].url %> onError="this.onerror=null;this.src='/stylesheets/error.png';">
@@ -109,34 +100,24 @@
 				<% } %>
 				<p class="description"><%= likedGallerites[gallerite].description %></p><hr class="minor-hr">
 				<p>Added by:</p>
-
 				<a class="adder" href="/user/<%= likedGallerites[gallerite].addedBy.userId %>">
 					<img src=<%= likedGallerites[gallerite].addedBy.imageLink %>>
 					<p><%= likedGallerites[gallerite].addedBy.name %></p>
 				</a><hr class="minor-hr">
 				<div class="likes-section">
 					<p>Likes: <span class="no-of-likes"><%= likedGallerites[gallerite].likedBy.length %></span></p>
-
 					<% if (user && likedGallerites[gallerite].likedBy.indexOf(user.id) == -1) { %>
-
 					<button class="action like-button" gallerite=<%- JSON.stringify(likedGallerites[gallerite].serialNumber) %>><span class="fontawesome-thumbs-up"></span>Like</button>
-
 					<% } else if (user && likedGallerites[gallerite].likedBy.indexOf(user.id) > -1) { %>
-
 					<button class="action unlike-button" gallerite=<%- JSON.stringify(likedGallerites[gallerite].serialNumber) %>><span class="fontawesome-thumbs-down"></span>Unlike</button>
-
 					<% } %>
 				</div>
-
 				<a href="/explore/<%- JSON.stringify(likedGallerites[gallerite].serialNumber) %>"><button class="explore-button">Explore</button></a>
 			</div>
-
 			<% } %>
-
 		</div>
 	</div>
-
-
+	<!-- Footer section. -->
 	<div class="footer">
 		<div class="sizer">
 			<p>Page by Amer Hamdan (email:<a href="mailto:amashamdan@gmail.com"> amashamdan@gmail.com</a>)</p>

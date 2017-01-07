@@ -9,6 +9,7 @@
 	<script src="scripts/addGallerite.js"></script>
 </head>
 <body>
+	<!-- Menu bar -->
 	<div class="menu-bar">
 		<div class="sizer">
 			<div class="space-between-wrapper">
@@ -21,8 +22,9 @@
 			</div>
 		</div>
 	</div>
-
+	<!-- Gallertie Types section. The sizer class gives the div its width -->
 	<div class="content sizer">
+		<!-- A message error may be receuived from the server if the provided link in the previous attemot was invalid. -->
 		<% if (message) { %>
 		<span class="error-message"><%= message %></span>
 		<% } %>
@@ -70,7 +72,7 @@
 			</form>
 		</div>
 	</div>
-
+	<!-- Footer section -->
 	<div class="footer">
 		<div class="sizer">
 			<p>Page by Amer Hamdan (email:<a href="mailto:amashamdan@gmail.com"> amashamdan@gmail.com</a>)</p>

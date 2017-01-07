@@ -3,15 +3,15 @@
 <head>
 	<title>Galleria</title>
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-
-	<!-- Have these loaded before local css file to override unwanted behaviour of default css. -->
+	<!-- Have these loaded before local css file to override unwanted behaviour of default css. bricklayer library to show pinterest-like layout. -->
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bricklayer/0.4.2/bricklayer.min.css">
 	<script src="//cdnjs.cloudflare.com/ajax/libs/bricklayer/0.4.2/bricklayer.min.js"></script>
-
 	<link rel="stylesheet" href="/stylesheets/screen.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<!-- Zocial for twitter login button -->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/css-social-buttons/1.2.0/css/zocial.min.css" rel="stylesheet">
+	<!-- fontawesome for like and unlike buttons -->
 	<link href="http://weloveiconfonts.com/api/?family=fontawesome" rel="stylesheet">
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
@@ -19,6 +19,7 @@
 	<script src="/scripts/index.js"></script>
 </head>
 <body>
+	<!-- Menu bar -->
 	<div class="menu-bar">
 		<div class="sizer">
 			<div class="space-between-wrapper">
@@ -36,19 +37,19 @@
 			</div>
 		</div>
 	</div>
-
+	<!-- The search bar div. Here the user can do a tag search. -->
 	<div class="content sizer" id="search-div">
 		<form method="post" action="/search" id="gallerites-search">
 			<input name="input" placeholder="Enter tag to search">
 			<button type="submit" class="ok-button">Search</button>
 		</form>
 	</div>
-
+	<!-- This div shows the gallerties which was fully matched with the entry. Inside it is exactly the same as that in index.ejs -->
 	<div class="content sizer">
 		<% if (gallerites.length == 0 && partialGallerites.length == 0) { %>
 		<p>Your search <i>'<%= entry %>'</i> did not return any results!</p>
 		<% } else { %>
-		<p>Here are the gallerites which matched your tag search <i>'<%= entry %>'</i>.</p><hr class="main-hr">
+		<p>Here are the gallerites which <strong>FULLY</strong> matched your tag search <i>'<%= entry %>'</i>.</p><hr class="main-hr">
 		<div class="bricklayer">
 			<% for (var gallerite in gallerites) { %>
 			<div class="gallerite">
@@ -61,31 +62,27 @@
 				<% } %>
 				<p class="description"><%= gallerites[gallerite].description %></p><hr class="minor-hr">
 				<p>Added by:</p>
-
-				
 				<a class="adder" href="/user/<%= gallerites[gallerite].addedBy.userId %>">
 					<img src=<%= gallerites[gallerite].addedBy.imageLink %>>
 					<p><%= gallerites[gallerite].addedBy.name %></p>
 				</a><hr class="minor-hr">
-
-
 				<div class="likes-section">
 					<p>Likes: <span class="no-of-likes"><%= gallerites[gallerite].likedBy.length %></span></p>
-
 					<% if (user && gallerites[gallerite].likedBy.indexOf(user.id) == -1) { %>
-
 					<button class="action like-button" gallerite=<%- JSON.stringify(gallerites[gallerite].serialNumber) %>><span class="fontawesome-thumbs-up"></span>Like</button>
-
 					<% } else if (user && gallerites[gallerite].likedBy.indexOf(user.id) > -1) { %>
-
 					<button class="action unlike-button" gallerite=<%- JSON.stringify(gallerites[gallerite].serialNumber) %>><span class="fontawesome-thumbs-down"></span>Unlike</button>
-
 					<% } %>
 				</div>
 				<a href="/explore/<%- JSON.stringify(gallerites[gallerite].serialNumber) %>"><button class="explore-button">Explore</button></a>
 			</div>
 			<% } %>
-
+		</div>
+	</div>
+	<!-- This div shows the gallerties which were partially matched with the entry. -->
+	<div class="content sizer" style="margin-top: 20px;">
+		<p>Here are the gallerites which <strong>PARTIALLY</strong> matched your tag search <i>'<%= entry %>'</i>.</p><hr class="main-hr">
+		<div class="bricklayer">
 			<% for (var gallerite in partialGallerites) { %>
 			<div class="gallerite">
 				<% if (partialGallerites[gallerite].type == "image") { %>
@@ -96,36 +93,26 @@
 				<a href=<%= partialGallerites[gallerite].url %> target="blank"><div style="text-align: center;"><img class="article-icon" src="/stylesheets/article.svg"></div></a>
 				<% } %>
 				<p class="description"><%= partialGallerites[gallerite].description %></p><hr class="minor-hr">
-				<p>Added by:</p>
-
-				
+				<p>Added by:</p>			
 				<a class="adder" href="/user/<%= partialGallerites[gallerite].addedBy.userId %>">
 					<img src=<%= partialGallerites[gallerite].addedBy.imageLink %>>
 					<p><%= partialGallerites[gallerite].addedBy.name %></p>
 				</a><hr class="minor-hr">
-
-
 				<div class="likes-section">
 					<p>Likes: <span class="no-of-likes"><%= partialGallerites[gallerite].likedBy.length %></span></p>
-
 					<% if (user && partialGallerites[gallerite].likedBy.indexOf(user.id) == -1) { %>
-
 					<button class="action like-button" gallerite=<%- JSON.stringify(partialGallerites[gallerite].serialNumber) %>><span class="fontawesome-thumbs-up"></span>Like</button>
-
 					<% } else if (user && partialGallerites[gallerite].likedBy.indexOf(user.id) > -1) { %>
-
 					<button class="action unlike-button" gallerite=<%- JSON.stringify(partialGallerites[gallerite].serialNumber) %>><span class="fontawesome-thumbs-down"></span>Unlike</button>
-
 					<% } %>
 				</div>
 				<a href="/explore/<%- JSON.stringify(partialGallerites[gallerite].serialNumber) %>"><button class="explore-button">Explore</button></a>
 			</div>
 			<% } %>
 		</div>
-
 		<% } %>
 	</div>
-
+	<!-- Footer section -->
 	<div class="footer">
 		<div class="sizer">
 			<p>Page by Amer Hamdan (email:<a href="mailto:amashamdan@gmail.com"> amashamdan@gmail.com</a>)</p>
