@@ -13,4 +13,9 @@ $(document).ready(function() {
 		/* User redirected back to the homepage. */
 		window.location.replace("/");
 	});
+	/* Handler for menu button click. For smaller devices. */
+	$("#expand-menu").click(function() {
+		/* Adds class 'open' to drawer. */
+		$("#drawer").toggleClass("open");
+	});
 });

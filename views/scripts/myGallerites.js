@@ -33,7 +33,12 @@ $(document).ready(function() {
 				}
 			});
 		}
-	})
+	});
+	/* Handler for menu button click. For smaller devices. */
+	$("#expand-menu").click(function() {
+		/* Adds class 'open' to drawer. */
+		$("#drawer").toggleClass("open");
+	});
 });
 
 function action200(likesToIncrement, gallerite, action) {

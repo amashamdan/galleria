@@ -84,7 +84,12 @@ $(document).ready(function() {
 				}
 			});
 		}
-	})
+	});
+	/* Handler for menu button click. For smaller devices. */
+	$("#expand-menu").click(function() {
+		/* Adds class 'open' to drawer. */
+		$("#drawer").toggleClass("open");
+	});
 });
 /* Ran when a status 200 is received from the server after database is updated due to clicking like or unlike button. */
 function action200(clickedButton, gallerite, action) {
