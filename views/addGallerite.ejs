@@ -14,6 +14,8 @@
 		<div class="sizer">
 			<div class="space-between-wrapper">
 				<a href="/" class="emblem-link"><h3>Galleria</h3></a>
+				<!-- Initially hidden. Shown for smaller devices. -->
+				<button class="generic-button" id="expand-menu">Menu</button>
 				<div class="button-wrapper">
 				<a href="/"><button class="generic-button">Home</button></a>
 				<a href="/myGallerites"><button class="generic-button">My gallerites</button></a>
@@ -21,6 +23,19 @@
 				</div>
 			</div>
 		</div>
+	</div>
+	<!-- Drawer is initially hidden, displayed for smaller devices. -->
+	<div id="drawer">
+		<p>Select an option from the menu.</p><hr class="minor-hr">
+		<ul>
+			<% if (!user) { %>
+			<a href="/login"><li>Login</li></a>
+			<% } else { %>
+			<a href="/"><li>Home</li></a>
+			<a href="/myGallerites"><li>My gallerites</li></a>
+			<a href="/login/logout"><li>Logout</li></a>
+			<% } %>
+		</ul>
 	</div>
 	<!-- Gallertie Types section. The sizer class gives the div its width -->
 	<div class="content sizer">

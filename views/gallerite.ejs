@@ -7,7 +7,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 	<!-- fontawesome for like and unlike buttons -->
-	<link href="https://weloveiconfonts.com/api/?family=fontawesome" rel="stylesheet">
+	<link href="http://weloveiconfonts.com/api/?family=fontawesome" rel="stylesheet">
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 	<!-- Zocial for twitter login button -->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/css-social-buttons/1.2.0/css/zocial.min.css" rel="stylesheet">
@@ -20,12 +20,15 @@
 		<div class="sizer">
 			<div class="space-between-wrapper">
 				<a href="/" class="emblem-link"><h3>Galleria</h3></a>
+				<!-- Initially hidden. Shown for smaller devices. -->
+				<button class="generic-button" id="expand-menu">Menu</button>
 				<div class="button-wrapper">
 				<a href="/"><button class="generic-button">Home</button></a>
 				<!-- The remaining buttons are shown depending on whether a user is signed in or not. -->
 				<% if (!user) { %>
 				<a href="/login" id="login-button" class="zocial twitter">Login</a>	
-				<% } else { %>				
+				<% } else { %>	
+				<a href="/"><button class="generic-button">Home</button></a>			
 				<a href="/addGallerite"><button class="generic-button">Add gallerite</button></a>
 				<a href="/myGallerites"><button class="generic-button">My gallerites</button></a>
 				<a href="/login/logout"><button class="danger-button">Logout</button></a>
@@ -33,6 +36,20 @@
 				</div>
 			</div>
 		</div>
+	</div>
+	<!-- Drawer is initially hidden, displayed for smaller devices. -->
+	<div id="drawer">
+		<p>Select an option from the menu.</p><hr class="minor-hr">
+		<ul>
+			<% if (!user) { %>
+			<a href="/login"><li>Login</li></a>
+			<% } else { %>
+			<a href="/"><li>Home</li></a>
+			<a href="/addGallerite"><li>Add gallerite</li></a>
+			<a href="/myGallerites"><li>My gallerites</li></a>
+			<a href="/login/logout"><li>Logout</li></a>
+			<% } %>
+		</ul>
 	</div>
 	<!-- The search bar div. Here the user can do a tag search. -->
 	<div class="content sizer" id="search-div">

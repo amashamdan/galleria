@@ -10,7 +10,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 	<!-- fontawesome for like and unlike buttons -->
-	<link href="https://weloveiconfonts.com/api/?family=fontawesome" rel="stylesheet">
+	<link href="http://weloveiconfonts.com/api/?family=fontawesome" rel="stylesheet">
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 	<script src="/scripts/myGallerites.js"></script>
@@ -21,6 +21,8 @@
 		<div class="sizer">
 			<div class="space-between-wrapper">
 				<a href="/" class="emblem-link"><h3>Galleria</h3></a>
+				<!-- Initially hidden. Shown for smaller devices. -->
+				<button class="generic-button" id="expand-menu">Menu</button>
 				<div class="button-wrapper">
 				<a href="/"><button class="generic-button">Home</button></a>
 				<a href="/addGallerite"><button class="generic-button">Add gallerite</button></a>
@@ -28,6 +30,19 @@
 				</div>
 			</div>
 		</div>
+	</div>
+	<!-- Drawer is initially hidden, displayed for smaller devices. -->
+	<div id="drawer">
+		<p>Select an option from the menu.</p><hr class="minor-hr">
+		<ul>
+			<% if (!user) { %>
+			<a href="/login"><li>Login</li></a>
+			<% } else { %>
+			<a href="/"><li>Home</li></a>
+			<a href="/addGallerite"><li>Add gallerite</li></a>
+			<a href="/login/logout"><li>Logout</li></a>
+			<% } %>
+		</ul>
 	</div>
 	<!-- The search bar div. Here the user can do a tag search. -->
 	<div class="content sizer" id="search-div">
