@@ -18,7 +18,7 @@ app.use("/scripts", express.static(__dirname + "/views/scripts"));
 passport.use(new Strategy({
 	    consumerKey: process.env.CONSUMER_KEY,
 	    consumerSecret: process.env.CONSUMER_SECRET,
-	    callbackURL: "http://localhost:8080/login/return"
+	    callbackURL: "https://amer-galleria.herokuapp.com/login/return"
 	},
 	function(token, tokenSecret, profile, cb) {
 	    // In this example, the user's Twitter profile is supplied as the user
