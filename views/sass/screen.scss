@@ -1,4 +1,6 @@
-$section-bk-color: white;
+$body-bk-color: white;
+$section-bk-color: #E3E3E3;
+$gallerite-bk-color: white;
 $section-font-color: #404040;
 $generic-button-font-color: white;
 $button-width: 90px;
@@ -16,7 +18,7 @@ $info-bk-color: #D6D6D6;
 }
 
 body {
-	background-color: black;
+	background-color: $body-bk-color;
 	margin: 0;
 	padding: 0;
 	font-family: 'Open Sans', sans-serif;
@@ -26,6 +28,7 @@ body {
 	width: $button-width;
 	padding: 7px;
 	border: none;
+	border-radius: 3px;
 	font-size: 0.7em;
 	color: $generic-button-font-color;
 	@if $type == danger {
@@ -53,7 +56,6 @@ $buttons: generic danger ok;
 	padding: 10px;
 	margin: 0 0 30px 0;
 	background-color: $section-bk-color;
-	opacity: 0.9;
 	h3 {
 		margin: 0;
 	}
@@ -80,15 +82,18 @@ $buttons: generic danger ok;
 
 .content {
 	background-color: $section-bk-color;
-	opacity: 0.9;
 	padding: 10px;
+	border-radius: 5px;
 }
 
 .gallerite {
-	margin: 5px;
-	padding: 5px;
-	border: 1px solid gray;
-	//width: 200px;
+	background-color: $gallerite-bk-color;
+	margin: 15px 5px 15px 5px;
+	padding: 8px;
+	border: 1px solid #DBDBDB;
+	border-radius: 5px;
+	font-size: 0.85em;
+	box-shadow: 5px 5px 5px gray;
 	img {
 		width: 100%;
 	}
@@ -103,6 +108,7 @@ $buttons: generic danger ok;
 	background-color: $type-header-bk-color;
 	padding: 5px;
 	color: $type-header-font-color;
+	border-radius: 5px;
 	&:hover {
 		cursor: pointer;
 	}
@@ -309,7 +315,6 @@ input {
 	color: $section-font-color;
 	margin-top: 30px;
 	background-color: $section-bk-color;
-	opacity: 0.9;
 	padding: 5px; 
 	ul {
 		list-style: none;
@@ -322,12 +327,43 @@ input {
 	}
 }
 
-
 .bricklayer-column-sizer {
 	width: 25%;
 }
 
+#expand-menu {
+	display: none;
+}
 
+#drawer {
+	color: white;
+	width: 250px;
+	height: 50%;
+	overflow-y: auto;
+	background-color: black;
+	opacity: 0.85; 
+	border: 1px solid gray;
+	position: absolute;
+	transform: translate(-330px, 0);
+	transition: transform 0.3s ease;
+	z-index: 4;
+	padding: 10px;
+	font-size: 0.85em;
+	a {
+		color: $section-font-color;
+		text-decoration: none;
+	}
+	li {
+		background-color: $section-bk-color;
+		border-radius: 3px;
+		margin-top: 10px;
+		padding: 5px;
+	}
+}
+
+#drawer.open {
+	transform: translate(0, 0);
+}
 
 @media screen and (max-width: 800px) {
 	.bricklayer-column-sizer {
@@ -335,8 +371,20 @@ input {
 	}
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 570px) {
 	.bricklayer-column-sizer {
 		width: 50%;
+	}
+	#expand-menu {
+		display: block;
+	}
+	.button-wrapper {
+		display: none;
+	}
+}
+
+@media screen and (max-width: 400px) {
+	.bricklayer-column-sizer {
+		width: 100%;
 	}
 }
