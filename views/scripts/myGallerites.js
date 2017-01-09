@@ -45,11 +45,11 @@ function action200(likesToIncrement, gallerite, action) {
 	if (action == "like") {
 		likesToIncrement.html(Number(likesToIncrement.html()) + 1);
 		likesToIncrement.parent().siblings("button").switchClass("like-button", "unlike-button");
-		likesToIncrement.parent().siblings("button").html('<span class="fontawesome-thumbs-down"></span>Unlike');
+		likesToIncrement.parent().siblings("button").html('<i class="fa fa-thumbs-down" aria-hidden="true"></i>Unlike');
 	} else if (action == "unlike") {
 		likesToIncrement.html(Number(likesToIncrement.html()) - 1);
 		likesToIncrement.parent().siblings("button").switchClass("unlike-button", "like-button");
-		likesToIncrement.parent().siblings("button").html('<span class="fontawesome-thumbs-up"></span>Like');
+		likesToIncrement.parent().siblings("button").html('<i class="fa fa-thumbs-up" aria-hidden="true"></i>Like');
 	}
 }
 

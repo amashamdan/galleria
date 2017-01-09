@@ -101,7 +101,7 @@ function action200(clickedButton, gallerite, action) {
 		/* The button's class is toggled. */
 		clickedButton.switchClass("like-button", "unlike-button");
 		/* Button's html is updated to reflect the new action. */
-		clickedButton.html('<span class="fontawesome-thumbs-down"></span>Unlike');
+		clickedButton.html('<i class="fa fa-thumbs-down" aria-hidden="true"></i>Unlike');
 		/* The user's info are added to the user's section (users who liked the gallerite). */
 		$("#likers-list").append(
 			'<a class="like-user" href="/user/' + user.id + '">' +
@@ -115,7 +115,7 @@ function action200(clickedButton, gallerite, action) {
 		countHtml.html(Number(countHtml.html()) - 1);
 		/* Button's class and html updated. */
 		clickedButton.switchClass("unlike-button", "like-button");
-		clickedButton.html('<span class="fontawesome-thumbs-up"></span>Like');
+		clickedButton.html('<i class="fa fa-thumbs-up" aria-hidden="true"></i>Like');
 		/* User removed from the likers list. */
 		$(".like-user").each(function(match) {
 			if ($(this).attr("href") == "/user/" + user.id) {
