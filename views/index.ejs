@@ -12,7 +12,7 @@
 	<!-- Zocial for twitter login button -->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/css-social-buttons/1.2.0/css/zocial.min.css" rel="stylesheet">
 	<!-- fontawesome for like and unlike buttons -->
-	<link href="http://weloveiconfonts.com/api/?family=fontawesome" rel="stylesheet">
+	<script src="https://use.fontawesome.com/0e2e583874.js"></script>
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 	<script src="scripts/index.js"></script>
@@ -91,9 +91,9 @@
 					<p>Likes: <span class="no-of-likes"><%= gallerites[gallerite].likedBy.length %></span></p>
 					<!-- if  statement to decide what to render, like/unlike button. -->
 					<% if (user && gallerites[gallerite].likedBy.indexOf(user.id) == -1) { %>
-					<button class="action like-button" gallerite=<%- JSON.stringify(gallerites[gallerite].serialNumber) %>><span class="fontawesome-thumbs-up"></span>Like</button>
+					<button class="action like-button" gallerite=<%- JSON.stringify(gallerites[gallerite].serialNumber) %>><i class="fa fa-thumbs-up" aria-hidden="true"></i>Like</button>
 					<% } else if (user && gallerites[gallerite].likedBy.indexOf(user.id) > -1) { %>
-					<button class="action unlike-button" gallerite=<%- JSON.stringify(gallerites[gallerite].serialNumber) %>><span class="fontawesome-thumbs-down"></span>Unlike</button>
+					<button class="action unlike-button" gallerite=<%- JSON.stringify(gallerites[gallerite].serialNumber) %>><i class="fa fa-thumbs-down" aria-hidden="true"></i>Unlike</button>
 					<% } %>
 				</div>
 				<a href="/explore/<%- JSON.stringify(gallerites[gallerite].serialNumber) %>"><button class="explore-button">Explore</button></a>

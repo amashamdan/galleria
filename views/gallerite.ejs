@@ -7,7 +7,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 	<!-- fontawesome for like and unlike buttons -->
-	<link href="http://weloveiconfonts.com/api/?family=fontawesome" rel="stylesheet">
+	<script src="https://use.fontawesome.com/0e2e583874.js"></script>
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 	<!-- Zocial for twitter login button -->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/css-social-buttons/1.2.0/css/zocial.min.css" rel="stylesheet">
@@ -28,7 +28,6 @@
 				<% if (!user) { %>
 				<a href="/login" id="login-button" class="zocial twitter">Login</a>	
 				<% } else { %>	
-				<a href="/"><button class="generic-button">Home</button></a>			
 				<a href="/addGallerite"><button class="generic-button">Add gallerite</button></a>
 				<a href="/myGallerites"><button class="generic-button">My gallerites</button></a>
 				<a href="/login/logout"><button class="danger-button">Logout</button></a>
@@ -86,9 +85,9 @@
 		<% } %>
 		<!-- If statement checls whether a like or unlike button should be placed. -->
 		<% if (user && gallerite.likedBy.indexOf(user.id) == -1) { %>
-		<button class="action like-button" gallerite=<%- JSON.stringify(gallerite.serialNumber) %>><span class="fontawesome-thumbs-up"></span>Like</button>
+		<button class="action like-button" gallerite=<%- JSON.stringify(gallerite.serialNumber) %>><i class="fa fa-thumbs-up" aria-hidden="true"></i>Like</button>
 		<% } else if (user && gallerite.likedBy.indexOf(user.id) > -1) { %>
-		<button class="action unlike-button" gallerite=<%- JSON.stringify(gallerite.serialNumber) %>><span class="fontawesome-thumbs-down"></span>Unlike</button>
+		<button class="action unlike-button" gallerite=<%- JSON.stringify(gallerite.serialNumber) %>><i class="fa fa-thumbs-down" aria-hidden="true"></i>Unlike</button>
 		<% } %>
 		</div>
 	</div>
