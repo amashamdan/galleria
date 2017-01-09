@@ -425,30 +425,35 @@ input {
   transform: translate(0, 0);
 }
 
+/* line 368, ../sass/screen.scss */
+.fa {
+  margin-right: 5px;
+}
+
 @media screen and (max-width: 800px) {
-  /* line 369, ../sass/screen.scss */
+  /* line 373, ../sass/screen.scss */
   .bricklayer-column-sizer {
     width: 33.3%;
   }
 }
 @media screen and (max-width: 570px) {
-  /* line 375, ../sass/screen.scss */
+  /* line 379, ../sass/screen.scss */
   .bricklayer-column-sizer {
     width: 50%;
   }
 
-  /* line 378, ../sass/screen.scss */
+  /* line 382, ../sass/screen.scss */
   #expand-menu {
     display: block;
   }
 
-  /* line 381, ../sass/screen.scss */
+  /* line 385, ../sass/screen.scss */
   .button-wrapper {
     display: none;
   }
 }
 @media screen and (max-width: 400px) {
-  /* line 387, ../sass/screen.scss */
+  /* line 391, ../sass/screen.scss */
   .bricklayer-column-sizer {
     width: 100%;
   }
