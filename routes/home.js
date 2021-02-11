@@ -6,15 +6,19 @@ var router = express.Router();
 var MongoClient = mongodb.MongoClient;
 var mongoUrl = process.env.GALLERIA;
 
-MongoClient.connect(mongoUrl, function(err, db) {
-	if (err) {
-		res.end("Error in contacting database");
-	} else {
+MongoClient.connect(mongoUrl, function(DBerr, db) {
+	// if (err) {
+		// res.end("Error in contacting database");
+	// } else {
 		var gallerites = db.collection("gallerites");
 		var users = db.collection("users");
 
 		router.route("/")
 		.get(function(req, res) {
+			if (DBerr) {
+				res.end("Error in contacting database");
+				return;
+			}
 			/* All gallerites are loaded and index.ejs is rendered. */
 			gallerites.find({}).toArray(function(err, results) {
 				res.render("index.ejs", {user: req.user, gallerites: results});
@@ -23,6 +27,10 @@ MongoClient.connect(mongoUrl, function(err, db) {
 		/* This route is called when a user hits the like or unlike button. */
 		router.route("/action/:serialNumber")
 		.post(function(req, res) {
+			if (DBerr) {
+				res.end("Error in contacting database");
+				return;
+			}
 			/* If the button pressed was like: */
 			if (req.body.action == "like") {
 				/* The gallerite is looked up using serial number which is passed a parameter in the url, the user's id is added to the likedBy array. */
@@ -65,7 +73,7 @@ MongoClient.connect(mongoUrl, function(err, db) {
 				);				
 			}
 		});
-	}
+	// }
 });
 
 module.exports = router;
