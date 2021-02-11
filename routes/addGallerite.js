@@ -4,6 +4,8 @@ var bodyParser = require("body-parser");
 var parser = bodyParser.urlencoded({extended: false});
 var valid = require("url-valid");
 var mongodb = require("mongodb");
+var dotenv = require("dotenv");
+dotenv.config();
 
 var router = express.Router();
 

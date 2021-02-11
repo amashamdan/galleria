@@ -1,6 +1,8 @@
 /* THIS ROUTE HANDLES DELETING A GALLERITE. */
 var express = require("express");
 var mongodb = require("mongodb");
+var dotenv = require("dotenv");
+dotenv.config();
 
 var router = express.Router();
 

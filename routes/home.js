@@ -2,16 +2,21 @@
 var express = require("express");
 var mongodb = require("mongodb");
 var router = express.Router();
+var dotenv = require("dotenv");
+dotenv.config();
 
 var MongoClient = mongodb.MongoClient;
 var mongoUrl = process.env.GALLERIA;
-
+console.log(mongoUrl);
 MongoClient.connect(mongoUrl, function(DBerr, db) {
 	// if (err) {
 		// res.end("Error in contacting database");
 	// } else {
-		var gallerites = db.collection("gallerites");
-		var users = db.collection("users");
+
+		if (!DBerr) {
+			var gallerites = db.collection("gallerites");
+			var users = db.collection("users");
+		}
 
 		router.route("/")
 		.get(function(req, res) {

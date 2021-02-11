@@ -3,6 +3,8 @@ var secure = require("express-force-https");
 var ejs = require("ejs");
 var passport = require("passport");
 var Strategy = require("passport-twitter").Strategy;
+var dotenv = require("dotenv");
+dotenv.config();
 
 var app = express();
 app.use(secure);

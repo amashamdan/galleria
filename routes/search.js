@@ -3,6 +3,8 @@ var express = require("express");
 var mongodb = require("mongodb");
 var bodyParser = require("body-parser");
 var parser = bodyParser.urlencoded({extended: false});
+var dotenv = require("dotenv");
+dotenv.config();
 
 var router = express.Router();
 var MongoClient = mongodb.MongoClient;

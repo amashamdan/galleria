@@ -1,6 +1,8 @@
 /* THIS ROUTE HANDLES EXPLORING A GALLERITE (open a gallerite's page). */
 var express = require("express");
 var mongodb = require("mongodb");
+var dotenv = require("dotenv");
+dotenv.config();
 
 var router = express.Router();
 var MongoClient = mongodb.MongoClient;

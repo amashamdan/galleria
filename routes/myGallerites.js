@@ -1,6 +1,8 @@
 var express = require("express");
 var mongodb = require("mongodb");
 var router = express.Router();
+var dotenv = require("dotenv");
+dotenv.config();
 
 var MongoClient = mongodb.MongoClient;
 var mongoUrl = process.env.GALLERIA;
